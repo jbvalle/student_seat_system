@@ -2,11 +2,6 @@ test:
   script:
     - apt-get update -y
     - apt install sudo -y
-    - sudo apt-get install build-essential -y
-    - mkdir vendor/google/googletest/googletest/build
-    - cd vendor/google/googletest/googletest/build
-    - cmake ..
-    - cd ../../../../../
-    - pwd
+    - sudo apt-get install build-essential -y && cd vendor/google/googletest/googletest/build && cmake .. && make
     - make
     
