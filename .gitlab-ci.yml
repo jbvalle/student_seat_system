@@ -3,6 +3,9 @@ test:
     - apt-get update -y
     - apt install sudo -y
     - sudo apt-get install build-essential -y
+    - cd vendor/google/googletest/googletest/build
+    - cmake ..
+    - cd ../../../../../
+    - pwd
     - make
-    - ./test_exe
     
