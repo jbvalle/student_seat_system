@@ -3,4 +3,4 @@
 all: run
 
 run:
-	g++ -o test_exe test.cxx libgtest.a -I. libpthread.so
+	g++ -o test_exe -L. -I. test.cxx libgtest.a libpthread.so
