@@ -4,6 +4,6 @@ test:
     - apt install sudo -y
     - sudo apt-get install build-essential -y
     - sudo apt-get install libpthread-stubs0-dev -y
-    - g++ -o test_exe test.cxx libgtest.a -I. -L. -libpthread
+    - g++ -o test_exe test.cxx libgtest.a -I./ -L./ -lpthread
     - ./test_exe
     
