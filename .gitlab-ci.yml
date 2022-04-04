@@ -2,7 +2,7 @@ test:
   script:
     - apt-get update -y
     - apt install sudo -y
-    - sudo apt-get install build-essential -y
+    - sudo apt-get install build-essential cmake -y
     - mkdir vendor/google/googletest/googletest/build -p
     - cd vendor/google/googletest/googletest/build
     - cmake ..
