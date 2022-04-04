@@ -3,5 +3,5 @@ test:
     - apt-get update -y
     - apt install sudo -y
     - sudo apt-get install build-essential cmake -y && cd vendor/google/googletest/googletest/build && cmake .. && make
-    - make
+    - pwd
     
