@@ -1,4 +1,6 @@
-.PHONY=run clean
+.PHONY=run clean build
+
+BUILD_GTEST=build_gtest.sh
 
 CC=g++
 
@@ -25,6 +27,9 @@ $(TARGET): $(OBJ)
 run:
 	#g++ -o test_exe -I./googletest/include test.cxx -L./googletest/build/lib -L. -lgtest -lpthread -O0
 	./$(TARGET)
+
+build:
+	bash build_gtest.sh
 
 clean:
 	rm -rf .*swp .*swo $(TARGET)
