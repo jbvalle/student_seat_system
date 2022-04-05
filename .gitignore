@@ -2,6 +2,6 @@
 test_exe
 
 #vim security files
-*swp
-*swo
+.*swp
+.*swo
 
