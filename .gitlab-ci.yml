@@ -3,8 +3,8 @@ stages:
   - test
 
 build:
-  tags: runner_test
   stage: build
+  tags: runner_test
   script:
     - bash build_gtest.sh
   artifacts:
@@ -12,8 +12,8 @@ build:
       - ./
 
 test:
-  tags: runner_test
   stage: test
+  tags: runner_test
   script:
     - pwd
     - make
