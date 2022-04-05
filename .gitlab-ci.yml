@@ -4,7 +4,7 @@ build:
     - apt install sudo -y
     - sudo apt-get -y install build-essential cmake libpthread-stubs0-dev
     - cd googletest/ && mkdir -p build && cd $_ && rm -rf * && cmake .. && make
-    - ls -la
+    - cd ../../ && make
     #&& cd ../../../../../ && make
     #- ./test_exe
     
