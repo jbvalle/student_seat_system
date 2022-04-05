@@ -1,12 +1,19 @@
+stages:
+  - build
+  - test
+
 build:
+  stage: build
   script:
-      - bash build_gtest.sh
-      # - apt-get update -y
-      #    - apt install sudo -y
-      # - sudo apt-get -y install build-essential cmake libpthread-stubs0-dev
-      # - cd googletest/ && mkdir -p build && cd $_ && rm -rf * && cmake .. && make
-      # - pwd
-      # - cd ../../ && make
-    #&& cd ../../../../../ && make
-    #- ./test_exe
+    - bash build_gtest.sh
+  artifacts:
+    paths:
+      - ./
+
+test:
+  stage: test
+  script:
+    - make
+    
+
   
