@@ -4,6 +4,8 @@ stages:
 
 build:
   stage: build
+  tags: 
+    - runner2
   script:
     - bash build_gtest.sh
   artifacts:
@@ -12,8 +14,11 @@ build:
 
 test:
   stage: test
+  tags:
+    - runner2
   script:
     - make
+
     
 
   
