@@ -3,9 +3,7 @@ stages:
   - test
 
 build:
-  jobs:
-    tags:
-      - build
+  tags: runner_test
   stage: build
   script:
     - bash build_gtest.sh
@@ -14,9 +12,7 @@ build:
       - ./
 
 test:
-  jobs:
-    tags:
-      - build
+  tags: runner_test
   stage: test
   script:
     - pwd
