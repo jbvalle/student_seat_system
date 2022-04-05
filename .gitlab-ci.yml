@@ -13,7 +13,9 @@ build:
 test:
   stage: test
   script:
+    - pwd
     - make
+
     
 
   
