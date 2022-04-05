@@ -5,7 +5,7 @@ stages:
 build:
   stage: build
   tags: 
-    - runner_test
+    - runner_tag
   script:
     - bash build_gtest.sh
   artifacts:
