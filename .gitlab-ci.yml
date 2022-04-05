@@ -18,7 +18,7 @@ test:
   tags:
     - runner2
   script:
-    - make
+    - make test
 
 clean:
   stage: clean
