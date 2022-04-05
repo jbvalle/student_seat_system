@@ -3,5 +3,5 @@
 all: run
 
 run:
-	g++ -o test_exe -L./googletest/build/lib -L. -I. test.cxx -lgtest -lpthread
+	g++ -o test_exe -I. test.cxx -L./googletest/build/lib -lgtest -L. -lpthread
 	./test_exe
