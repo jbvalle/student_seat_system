@@ -14,8 +14,6 @@ build:
 
 test:
   stage: test
-  tags: 
-    - runner_test
   script:
     - make
 
