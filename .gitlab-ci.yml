@@ -2,7 +2,8 @@ test:
   script:
     - apt-get update -y
     - apt install sudo -y
-    - sudo apt-get install build-essential cmake -y && cd vendor/google/googletest/googletest/ && mkdir build && cd $_ && cmake .. && make 
+    - sudo apt-get -y install build-essential cmake libpthread-stubs0-dev
+    - cd googletest/ && ls
     #&& cd ../../../../../ && make
     #- ./test_exe
     
