@@ -6,7 +6,6 @@ stages:
 build:
   stage: build
   tags:
-    - build
     - runner2
   script:
     - bash build_gtest.sh
