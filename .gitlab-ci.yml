@@ -8,6 +8,7 @@ build:
   tags: 
     - runner2
     - runner_test
+    - runner_tag
   script:
     - bash build_gtest.sh
   artifacts:
@@ -19,6 +20,7 @@ test:
   tags:
     - runner2
     - runner_test
+    - runner_tag
   script:
     - make test
 
