@@ -17,7 +17,6 @@ test:
   stage: test
   tags:
     - build
-    - runner2
   script:
     - make test
 
