@@ -5,8 +5,6 @@ stages:
 
 build:
   stage: build
-  tags:
-    - 
   script:
     - bash build_gtest.sh
   artifacts:
@@ -15,15 +13,11 @@ build:
 
 test:
   stage: test
-  tags:
-    - 
   script:
     - make test
 
 clean:
   stage: clean
-  tags:
-    - 
   script:
     - make clean
 
