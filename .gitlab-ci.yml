@@ -1,0 +1,27 @@
+stages:
+  - build
+  - test
+  - clean
+
+build:
+  stage: build
+  script:
+    - bash build_gtest.sh
+  artifacts:
+    paths:
+      - ./
+
+test:
+  stage: test
+  script:
+    - make test
+
+clean:
+  stage: clean
+  script:
+    - make clean
+
+
+    
+
+  
