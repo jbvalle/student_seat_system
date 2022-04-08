@@ -6,6 +6,7 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} -std=c99")
 
 set(SOURCE_FILES main.c)
+
 add_executable(gruppe_v ${SOURCE_FILES})
 
 find_package(PkgConfig REQUIRED)
