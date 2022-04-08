@@ -17,8 +17,10 @@ test:
     - cd testing && ./test --gtest_output=\"xml:report.xml\"
   artifacts:
     when: always
+    paths: 
+      - report/
     reports:
-      junit: report.xml
+      junit: report/report.xml
   
 
 clean:
