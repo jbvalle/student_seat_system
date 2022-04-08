@@ -18,7 +18,7 @@ test:
   artifacts:
     when: always
     reports:
-      junit: report.xml
+      junit: report/report.xml
   
 
 clean:
