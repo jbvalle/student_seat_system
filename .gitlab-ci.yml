@@ -14,7 +14,7 @@ test:
   stage: test
   script:
     - make test
-    - ./main --gtest_output=\"xml:report.xml\"
+    - cd testing && ./test --gtest_output=\"xml:report.xml\"
   artifacts:
     when: always
     reports:
