@@ -2,7 +2,6 @@ stages:
   - build
   - test
   - clean
-
 build:
   stage: build
   script:
@@ -15,13 +14,14 @@ test:
   stage: test
   script:
     - make test
+    - gtest.exe --gtest_output=\"xml:report.xml\"
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml
+  
 
 clean:
   stage: clean
   script:
     - make clean
-
-
-    
-
-  
