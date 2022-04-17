@@ -1,20 +1,18 @@
-.PHONY=run clean build test
-
-BUILD_GTEST=build_gtest.sh
+.PHONY=run clean show
 
 CC=g++
 
-INC_FLAGS=-I./googletest/include
+INC_FLAGS=-I../googletest/include
 
 CFLAGS=-O0 -Wall -Wextra -pedantic
 
-LDFLAGS=-L./googletest/build/lib -L. -lgtest -lpthread 
+LDFLAGS=-L../googletest/build/lib -L. -lgtest -lpthread 
 
 SRCS=$(wildcard *.cxx)
 
 OBJ=$(SRCS:%.cxx=%.o)
 
-TARGET:=main
+TARGET:=test
 
 all: clean $(OBJ) $(TARGET) run
 
@@ -24,16 +22,12 @@ all: clean $(OBJ) $(TARGET) run
 $(TARGET): $(OBJ)
 	@$(CC) -o $@ $(INC_FLAGS) $^ $(LDFLAGS) $(CFLAGS)
 
+
 run:
 	@./$(TARGET)
 
-build:
-	@bash build_gtest.sh
 
-test:
-	@$(MAKE) -C testing 
 
 clean:
 	@rm -rf .*swp .*swo $(TARGET) *.o
-	@$(MAKE) -C testing clean 
 
