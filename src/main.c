@@ -6,7 +6,6 @@
 //TODO: 1) when "save" button is selected classroom will be created and the entry are not more editable, only appear as label
         2) create a view3 where the user can ask for direct and indirect neighbour
         3) create a callback function, that saves the generated pattern in create_view2();
-
 */
 typedef struct Cell {
     int row;
@@ -37,8 +36,8 @@ typedef struct Widget {
 
 static void
 display_pattern(int rows, int cols, GtkWidget *window, GtkWidget **entry, GtkWidget **hbox, GtkWidget *vbox);
-static void remove_child_widget(GtkWidget *widget);
 
+static void remove_child_widget(GtkWidget *widget);
 
 
 static GtkWidget *create_view1(void);
@@ -62,28 +61,28 @@ static void get_student_name_entry_input(GtkWidget *widget, gpointer data);
 #define MAX_SEATS_COUNT ROWS_DEFAULT*COLS_DEFAULT
 
 
-static MyWidget *views;
+static MyWidget *widget;
 Classroom *classroom;
-static int reference_cnt_view1 = 0;
-static int reference_cnt_view2 = 0;
-static int reference_cnt_view3 = 0;
+static int reference_cnt_view1 = 0; // ONLY FOR MEMORY_LEAK_PURPOSE
+static int reference_cnt_view2 = 0; //
+static int reference_cnt_view3 = 0; //
 
 
 int main(int argc, char **argv) {
-    views = malloc(sizeof(*views));
+    widget = malloc(sizeof(*widget));
     gtk_init(&argc, &argv);
     GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     GtkWidget *vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
 
-    views->view1 = create_view1();
-    views->frame = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
+    widget->view1 = create_view1();
+    widget->frame = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
 
-    g_object_ref (views->view1);
+    g_object_ref (widget->view1);
 
     g_signal_connect (window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
-    gtk_box_pack_start(GTK_BOX (views->frame), views->view1, 10, 10, 10);
-    gtk_box_pack_start(GTK_BOX (vbox), views->frame, 10, 10, 10);
+    gtk_box_pack_start(GTK_BOX (widget->frame), widget->view1, 10, 10, 10);
+    gtk_box_pack_start(GTK_BOX (vbox), widget->frame, 10, 10, 10);
 
     gtk_widget_set_size_request(window, 400, 400);
     gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
@@ -93,26 +92,26 @@ int main(int argc, char **argv) {
     gtk_widget_show_all(window);
 
     gtk_main();
-    printf("%d\n",reference_cnt_view1);
-    printf("%d\n",reference_cnt_view2);
-    printf("%d\n",reference_cnt_view3);
+    printf("%d\n", reference_cnt_view1);
+    printf("%d\n", reference_cnt_view2);
+    printf("%d\n", reference_cnt_view3);
 
-
+/*// ONLY FOR MEMORY_LEAK_PURPOSE */
     for (int i = 0; i < reference_cnt_view1; ++i) {
-        g_object_ref_sink(G_OBJECT(views->view1)); // convert floating ref to standard ref
-        gtk_widget_destroy (views->view1); // break external references
-        g_object_unref (G_OBJECT(views->view1));
+        g_object_ref_sink(G_OBJECT(widget->view1)); // convert floating ref to standard ref
+        gtk_widget_destroy(widget->view1); // break external references
+        g_object_unref(G_OBJECT(widget->view1));
     }
     /*
     for (int i = 0; i < reference_cnt_view2; ++i) {
-        g_object_ref_sink(G_OBJECT(views->view2)); // convert floating ref to standard ref
-        gtk_widget_destroy (views->view2); // break external references
-        g_object_unref (G_OBJECT(views->view2));
+        g_object_ref_sink(G_OBJECT(widget->view2)); // convert floating ref to standard ref
+        gtk_widget_destroy (widget->view2); // break external references
+        g_object_unref (G_OBJECT(widget->view2));
     }*//*
     for (int i = 0; i < reference_cnt_view3; ++i) {
-        g_object_ref_sink(G_OBJECT(views->view3)); // convert floating ref to standard ref
-        gtk_widget_destroy (views->view3); // break external references
-        g_object_unref (G_OBJECT(views->view3));
+        g_object_ref_sink(G_OBJECT(widget->view3)); // convert floating ref to standard ref
+        gtk_widget_destroy (widget->view3); // break external references
+        g_object_unref (G_OBJECT(widget->view3));
     }
 */
     return 0;
@@ -128,8 +127,8 @@ static GtkWidget *create_view1(void) {
     GtkWidget *label_col = gtk_label_new("Number of cols");
     GtkWidget *label_capacity = gtk_label_new("Capacity: ");
     GtkWidget *radio_button_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
-    views->row_entry_input = gtk_entry_new();
-    views->col_entry_input = gtk_entry_new();
+    widget->row_entry_input = gtk_entry_new();
+    widget->col_entry_input = gtk_entry_new();
 
     GtkWidget *radio_button = gtk_radio_button_new_with_label(NULL, "100 % ");
     GtkWidget *radio_button1 = gtk_radio_button_new_with_label(
@@ -138,8 +137,8 @@ static GtkWidget *create_view1(void) {
             gtk_radio_button_get_group(GTK_RADIO_BUTTON(radio_button)), "25 % ");
 
 
-    g_signal_connect(generate_button, "clicked", G_CALLBACK(get_row_entry_input), views);
-    g_signal_connect(generate_button, "clicked", G_CALLBACK(get_col_entry_input), views);
+    g_signal_connect(generate_button, "clicked", G_CALLBACK(get_row_entry_input), widget);
+    g_signal_connect(generate_button, "clicked", G_CALLBACK(get_col_entry_input), widget);
     g_signal_connect (generate_button, "clicked", G_CALLBACK(change_view), "2");
     g_signal_connect (radio_button, "toggled", G_CALLBACK(radio_button_selected), (gpointer) "1");
     g_signal_connect (radio_button1, "toggled", G_CALLBACK(radio_button_selected), (gpointer) "2");
@@ -150,9 +149,9 @@ static GtkWidget *create_view1(void) {
     gtk_box_pack_start(GTK_BOX(radio_button_box), radio_button1, TRUE, TRUE, 0);
     gtk_box_pack_start(GTK_BOX(radio_button_box), radio_button2, TRUE, TRUE, 0);
     gtk_box_pack_start(GTK_BOX(row_input_box), label_row, 1, 1, 10);
-    gtk_box_pack_start(GTK_BOX(row_input_box), views->row_entry_input, 1, 1, 10);
+    gtk_box_pack_start(GTK_BOX(row_input_box), widget->row_entry_input, 1, 1, 10);
     gtk_box_pack_start(GTK_BOX(col_input_box), label_col, 1, 1, 10);
-    gtk_box_pack_start(GTK_BOX(col_input_box), views->col_entry_input, 1, 1, 10);
+    gtk_box_pack_start(GTK_BOX(col_input_box), widget->col_entry_input, 1, 1, 10);
     gtk_box_pack_start(GTK_BOX(vbox), radio_button_box, TRUE, false, 10);
     gtk_box_pack_start(GTK_BOX(vbox), row_input_box, 0, 0, 0);
     gtk_box_pack_start(GTK_BOX(vbox), col_input_box, 0, 0, 0);
@@ -320,31 +319,30 @@ static GtkWidget *create_view3(MyWidget *widget) {
 
 static void change_view(GtkWidget *button, gpointer data) {
     if (strcmp((char *) data, "1") == 0) {
-        gtk_container_remove(GTK_CONTAINER (views->frame), views->view2);
-        g_object_ref (views->view1);
+        gtk_container_remove(GTK_CONTAINER (widget->frame), widget->view2);
+        g_object_ref (widget->view1);
         reference_cnt_view1++;
-        //gtk_box_pack_start(GTK_BOX(views->frame), views->view1, 10, 10, 10);
-        gtk_container_add(GTK_CONTAINER(views->frame),views->view1);
-        g_object_unref (views->view1);
+        //gtk_box_pack_start(GTK_BOX(widget->frame), widget->view1, 10, 10, 10);
+        gtk_container_add(GTK_CONTAINER(widget->frame), widget->view1);
+        g_object_unref(widget->view1); // ONLY FOR MEMORY_LEAK_PURPOSE
     }
     if (strcmp((char *) data, "2") == 0) {
-        views->view2 = create_view2(views);
-        gtk_container_remove(GTK_CONTAINER (views->frame), views->view1);
-        g_object_ref (views->view2);
+        widget->view2 = create_view2(widget);
+        gtk_container_remove(GTK_CONTAINER (widget->frame), widget->view1);
+        g_object_ref (widget->view2);
         reference_cnt_view2++;
-        //gtk_box_pack_start(GTK_BOX(views->frame), views->view2, 10, 10, 10);
-        gtk_container_add(GTK_CONTAINER(views->frame),views->view2);
-        g_object_unref (views->view2);
-
+        //gtk_box_pack_start(GTK_BOX(widget->frame), widget->view2, 10, 10, 10);
+        gtk_container_add(GTK_CONTAINER(widget->frame), widget->view2);
+        g_object_unref(widget->view2);// ONLY FOR MEMORY_LEAK_PURPOSE
     }
     if (strcmp((char *) data, "3") == 0) {
-        views->view3 = create_view3(views);
-        gtk_container_remove(GTK_CONTAINER (views->frame), views->view2);
-        g_object_ref (views->view3);
+        widget->view3 = create_view3(widget);
+        gtk_container_remove(GTK_CONTAINER (widget->frame), widget->view2);
+        g_object_ref (widget->view3);
         reference_cnt_view3++;
-        //gtk_box_pack_start(GTK_BOX(views->frame), views->view3, 10, 10, 10);
-        gtk_container_add(GTK_CONTAINER(views->frame),views->view3);
-        g_object_unref (views->view3);
+        //gtk_box_pack_start(GTK_BOX(widget->frame), widget->view3, 10, 10, 10);
+        gtk_container_add(GTK_CONTAINER(widget->frame), widget->view3);
+        g_object_unref(widget->view3);// ONLY FOR MEMORY_LEAK_PURPOSE
     }
 }
 
