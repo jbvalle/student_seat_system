@@ -10,6 +10,7 @@ GtkWidget *create_view1(MyWidget *view) {
     GtkWidget *window = gtk_scrolled_window_new(NULL, NULL);
     GtkWidget *vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     GtkWidget *generate_button = gtk_button_new_with_label("generate");
+    gtk_widget_set_name(generate_button,"generate_button");
     GtkWidget *row_input_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     GtkWidget *col_input_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     GtkWidget *label_row = gtk_label_new("Number of rows");
@@ -20,6 +21,8 @@ GtkWidget *create_view1(MyWidget *view) {
     view->col_entry_input = gtk_entry_new();
     gtk_entry_set_placeholder_text(GTK_ENTRY(view->row_entry_input), "row");
     gtk_entry_set_placeholder_text(GTK_ENTRY(view->col_entry_input), "col");
+    gtk_widget_set_name(view->row_entry_input,"row_entry_input");
+    gtk_widget_set_name(view->col_entry_input,"col_entry_input");
 
     GtkWidget *radio_button = gtk_radio_button_new_with_label(NULL, "100 % ");
     GtkWidget *radio_button1 = gtk_radio_button_new_with_label(
@@ -76,37 +79,18 @@ GtkWidget *create_view2(MyWidget *view) {
     GtkWidget *option_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     GtkWidget *return_button = gtk_button_new_with_label("back");
     GtkWidget *save_button = gtk_button_new_with_label("save");
+    gtk_widget_set_name(return_button,"return_button");
+    gtk_widget_set_name(save_button,"save_button");
 
     GtkWidget **hbox = malloc(view->row * (sizeof(GtkWidget)));
     GtkWidget **student_container = malloc(view->row * (sizeof(GtkWidget)));
-    GtkWidget **image = malloc(NUMBER_OF_STUDENTS * (sizeof(GtkWidget)));
+    view->image = malloc(NUMBER_OF_STUDENTS * (sizeof(GtkWidget)));
     view->entry = malloc(NUMBER_OF_STUDENTS * (sizeof(GtkWidget)));
 
-    if (hbox == NULL) {
+    if (hbox == NULL || student_container == NULL || view->image == NULL || view->entry == NULL) {
         perror("malloc hbox -> ");
-        fprintf(stderr, "%zu bytes\n", view->row * (sizeof(GtkWidget)));
-        fprintf(stderr, "%d size\n", view->row);
         exit(EXIT_FAILURE);
     }
-    if (student_container == NULL) {
-        perror("malloc  student_container-> ");
-        fprintf(stderr, "%zu bytes\n", view->row * (sizeof(GtkWidget)));
-        fprintf(stderr, "%d size\n", view->row);
-        exit(EXIT_FAILURE);
-    }
-    if (image == NULL) {
-        perror("malloc image-> ");
-        fprintf(stderr, "%zu bytes\n", NUMBER_OF_STUDENTS * (sizeof(GtkWidget)));
-        fprintf(stderr, "%d size\n", NUMBER_OF_STUDENTS);
-        exit(EXIT_FAILURE);
-    }
-    if (view->entry == NULL) {
-        perror("malloc widget->entry -> ");
-        fprintf(stderr, "%zu bytes\n", NUMBER_OF_STUDENTS * (sizeof(GtkWidget)));
-        fprintf(stderr, "%d size\n", NUMBER_OF_STUDENTS);
-        exit(EXIT_FAILURE);
-    }
-
 
     for (int i = 0; i < view->row; i++) {
         hbox[i] = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
@@ -114,14 +98,17 @@ GtkWidget *create_view2(MyWidget *view) {
     }
     for (int i = 0; i < NUMBER_OF_STUDENTS; i++) {
         view->entry[i] = gtk_entry_new();
-        image[i] = gtk_image_new_from_file("../resources/icon.png");
+        gtk_widget_set_name(view->entry[i],"entry");
+        view->image[i] = gtk_image_new_from_file("../resources/icon.png");
+        gtk_widget_set_name( view->image[i],"icon_png");
+
     }
 
     for (int i = 0; i < view->row; i++) {
         for (int j = 0; j < view->col; j++) {
             student_container[i] = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
             gtk_box_set_homogeneous(GTK_BOX(student_container[i]), TRUE);
-            gtk_box_pack_start(GTK_BOX(student_container[i]), image[i * view->col + j], 0, 0, 0);
+            gtk_box_pack_start(GTK_BOX(student_container[i]),  view->image[i * view->col + j], 0, 0, 0);
             gtk_box_pack_start(GTK_BOX(student_container[i]), view->entry[i * view->col + j], 0, 0, 0);
             gtk_box_pack_start(GTK_BOX(hbox[i]), student_container[i], 0, 0, 0);
             gtk_entry_set_width_chars(GTK_ENTRY(view->entry[i * view->col + j]),
@@ -153,7 +140,7 @@ GtkWidget *create_view2(MyWidget *view) {
     gtk_widget_show_all(window);
 
 
-    free(image);
+    free( view->image);
     free(student_container);
     free(hbox);
 
@@ -174,7 +161,7 @@ bool validate_user_input(StudentEntry *student_entry_input, Classroom *current_c
     return false;
 }
 
-void get_student_entry_input(GtkWidget *widget, gpointer data) {
+void get_student_entry_input(GtkWidget *button, gpointer data) {
     if (data == NULL)
         return;
     StudentEntry *student_entry_input = data;
@@ -190,7 +177,7 @@ GtkWidget *create_view3(MyWidget *view) {
 
     StudentEntry *student_entry_input = malloc(sizeof(StudentEntry));
     GtkWidget **label_students_names = malloc(NUMBER_OF_STUDENTS * (sizeof(GtkWidget)));
-    GtkWidget **image = malloc(NUMBER_OF_STUDENTS * (sizeof(GtkWidget)));
+    view->image= malloc(NUMBER_OF_STUDENTS * (sizeof(GtkWidget)));
     GtkWidget **student_container = malloc(view->row * (sizeof(GtkWidget)));
     GtkWidget **hbox = malloc(view->row * (sizeof(GtkWidget)));
 
@@ -200,14 +187,15 @@ GtkWidget *create_view3(MyWidget *view) {
     GtkWidget *student_input_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     GtkWidget *input_button = gtk_button_new_with_label("Direkte / Indirekt Nachbar Abfragen");
     GtkWidget *student_label = gtk_label_new("Martikelnummer eingeben:");
-
+    gtk_widget_set_name(input_button,"direct_indirect_button");
+    gtk_widget_set_name(student_entry_input->entry,"direct_indirect_entry");
     //  g_signal_connect (input_button, "clicked", G_CALLBACK(get_direct_neighbour), "1");
     g_signal_connect (input_button, "clicked", G_CALLBACK(get_student_entry_input), student_entry_input);
 
     g_signal_connect (input_button, "clicked", G_CALLBACK(create_view4), student_entry_input);
     //printf("%s",student_entry_input->name);
 
-    if (hbox == NULL || student_container == NULL || image == NULL || label_students_names == NULL) {
+    if (hbox == NULL || student_container == NULL ||  view->image == NULL || label_students_names == NULL) {
         perror("malloc -> ");
         exit(EXIT_FAILURE);
     }
@@ -219,17 +207,19 @@ GtkWidget *create_view3(MyWidget *view) {
 
     for (int i = 0; i < NUMBER_OF_STUDENTS; ++i) {
         label_students_names[i] = gtk_label_new(classroom->students[i].name);
-        if (classroom->students[i].hasSeat)
-            image[i] = gtk_image_new_from_file("../resources/icon.png");
-        else
-            image[i] = gtk_image_new_from_file("../resources/delete.png");
+        gtk_widget_set_name(label_students_names[i],"students_names_label");
+        if (classroom->students[i].hasSeat) {
+            view->image[i] = gtk_image_new_from_file("../resources/icon.png");
+            gtk_widget_set_name( view->image[i],"icon_png");
+        } else
+            view->image[i] = gtk_image_new_from_file("../resources/delete.png");
     }
 
     for (int i = 0; i < view->row; i++) {
         for (int j = 0; j < view->col; j++) {
             student_container[i] = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
             gtk_box_set_homogeneous(GTK_BOX(student_container[i]), TRUE);
-            gtk_box_pack_start(GTK_BOX(student_container[i]), image[i * view->col + j], 0, 0, 0);
+            gtk_box_pack_start(GTK_BOX(student_container[i]),  view->image[i * view->col + j], 0, 0, 0);
             gtk_box_pack_start(GTK_BOX(student_container[i]), label_students_names[i * view->col + j], 0, 0, 0);
             gtk_box_pack_start(GTK_BOX(hbox[i]), student_container[i], 0, 0, 0);
         }
@@ -253,36 +243,36 @@ GtkWidget *create_view3(MyWidget *view) {
     gtk_widget_show_all(window);
 
     free(label_students_names);
-    free(image);
+    free( view->image);
     free(student_container);
     free(hbox);
 
     return window;
 }
-void destroy (GtkWidget *window);
 
 void create_view4(MyWidget *view, StudentEntry *current_StudentEntry) {
     GtkWidget *window;
     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+
     GtkWidget *vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 
     if (current_StudentEntry->found == false) {
-        GtkWidget *alertWindow = gtk_message_dialog_new(GTK_WINDOW(window),
+        GtkWidget *alert_window = gtk_message_dialog_new(GTK_WINDOW(window),
                                                         GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT |
                                                         GTK_DIALOG_USE_HEADER_BAR,
                                                         GTK_MESSAGE_WARNING, GTK_BUTTONS_CLOSE,
                                                         "Wrong input! no student with entered name found.\n"
                                                         "Or no name was entered ! try again");
-        gtk_dialog_run(GTK_DIALOG(alertWindow));
-        gtk_widget_destroy(alertWindow);
+        gtk_widget_set_name(alert_window,"alert_window");
+        gtk_dialog_run(GTK_DIALOG(alert_window));
+        gtk_widget_destroy(alert_window);
     } else {
         int col = current_StudentEntry->cell.col;
         int row = current_StudentEntry->cell.row;
-        GtkWidget *first_direct_neighbour;
-        GtkWidget *second_direct_neighbour;
-        GtkWidget *third_direct_neighbour;
-        GtkWidget *fourth_direct_neighbour;
+        GtkWidget *direct_neighbour;
+        GtkWidget *indirect_neighbour;
         Student students_container_arr[widget->row][widget->col];
+
         char direct_neighbour_str[] = "Direct Neighbour of ";
         char *string_direct = malloc(
                 4 + strlen(direct_neighbour_str) + strlen(current_StudentEntry->name) * sizeof(char));
@@ -290,20 +280,22 @@ void create_view4(MyWidget *view, StudentEntry *current_StudentEntry) {
         strcat(string_direct, current_StudentEntry->name);
         strcat(string_direct, " is:");
 
-        char indirect_neighbour_str[] = "indirect neighbour of ";
+        char indirect_neighbour_str[] = "Indirect Neighbour of ";
         char *string_indirect = malloc(
                 4 + strlen(indirect_neighbour_str) + strlen(current_StudentEntry->name) * sizeof(char));
         strcpy(string_indirect, indirect_neighbour_str);
         strcat(string_indirect, current_StudentEntry->name);
         strcat(string_indirect, " is:");
 
-        GtkWidget *indirect_neighbour = gtk_label_new(string_indirect);
-        GtkWidget *direct_neighbour = gtk_label_new(string_direct);
+        GtkWidget *direct_neighbour_label = gtk_label_new(string_direct);
+        GtkWidget *indirect_neighbour_label = gtk_label_new(string_indirect);
+        gtk_widget_set_name(indirect_neighbour_label, "indirect_neighbour_label");
+        gtk_widget_set_name(direct_neighbour_label, "direct_neighbour_label");
 
         free(string_direct);
         free(string_indirect);
 
-        gtk_box_pack_start(GTK_BOX(vbox), direct_neighbour, TRUE, TRUE, 0);
+        gtk_box_pack_start(GTK_BOX(vbox), direct_neighbour_label, TRUE, TRUE, 0);
 
         int k = 0;
         for (int i = 0; i < widget->row; ++i)
@@ -314,163 +306,207 @@ void create_view4(MyWidget *view, StudentEntry *current_StudentEntry) {
 
         if (row - 1 >= 0)
             if (students_container_arr[row - 1][col].hasSeat == true) {
-                first_direct_neighbour = gtk_label_new(students_container_arr[row - 1][col].name);
-                gtk_box_pack_start(GTK_BOX(vbox), first_direct_neighbour, TRUE, TRUE, 0);
+                direct_neighbour = gtk_label_new(students_container_arr[row - 1][col].name);
+                gtk_box_pack_start(GTK_BOX(vbox), direct_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[0],students_container_arr[row - 1][col].name);
+
             }
         if (row + 1 <= widget->row - 1)
             if (students_container_arr[row + 1][col].hasSeat == true) {
-                second_direct_neighbour = gtk_label_new(students_container_arr[row + 1][col].name);
-                gtk_box_pack_start(GTK_BOX(vbox), second_direct_neighbour, TRUE, TRUE, 0);
+                direct_neighbour = gtk_label_new(students_container_arr[row + 1][col].name);
+                gtk_box_pack_start(GTK_BOX(vbox), direct_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[1],students_container_arr[row + 1][col].name);
+
             }
         if (col - 1 >= 0)
             if (students_container_arr[row][col - 1].hasSeat == true) {
-                third_direct_neighbour = gtk_label_new(students_container_arr[row][col - 1].name);
-                gtk_box_pack_start(GTK_BOX(vbox), third_direct_neighbour, TRUE, TRUE, 0);
+                direct_neighbour = gtk_label_new(students_container_arr[row][col - 1].name);
+                gtk_box_pack_start(GTK_BOX(vbox), direct_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[2],students_container_arr[row][col - 1].name);
+
             }
         if (col + 1 <= widget->col - 1)
             if (students_container_arr[row][col + 1].hasSeat == true) {
-                fourth_direct_neighbour = gtk_label_new(students_container_arr[row][col + 1].name);
-                gtk_box_pack_start(GTK_BOX(vbox), fourth_direct_neighbour, TRUE, TRUE, 0);
+                direct_neighbour = gtk_label_new(students_container_arr[row][col + 1].name);
+                gtk_box_pack_start(GTK_BOX(vbox), direct_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[3],students_container_arr[row][col + 1].name);
+
             }
         if (col + 1 <= widget->col - 1 && row - 1 >= 0)
             if (students_container_arr[row - 1][col + 1].hasSeat == true) {
-                GtkWidget *fifth_direct_neighbour = gtk_label_new(
+                direct_neighbour = gtk_label_new(
                         students_container_arr[row - 1][col + 1].name);
-                gtk_box_pack_start(GTK_BOX(vbox), fifth_direct_neighbour, TRUE, TRUE, 0);
+                gtk_box_pack_start(GTK_BOX(vbox), direct_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[4],students_container_arr[row - 1][col + 1].name);
+
             }
         if (col + 1 <= widget->col - 1 && row + 1 <= widget->row - 1)
             if (students_container_arr[row + 1][col + 1].hasSeat == true) {
-                GtkWidget *sixth_direct_neighbour = gtk_label_new(
+                direct_neighbour = gtk_label_new(
                         students_container_arr[row + 1][col + 1].name);
-                gtk_box_pack_start(GTK_BOX(vbox), sixth_direct_neighbour, TRUE, TRUE, 0);
+                gtk_box_pack_start(GTK_BOX(vbox), direct_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[5],students_container_arr[row + 1][col + 1].name);
+
             }
         if (col - 1 >= 0 && row - 1 >= 0)
             if (students_container_arr[row - 1][col - 1].hasSeat == true) {
-                GtkWidget *seventh_direct_neighbour = gtk_label_new(
+                direct_neighbour = gtk_label_new(
                         students_container_arr[row - 1][col - 1].name);
-                gtk_box_pack_start(GTK_BOX(vbox), seventh_direct_neighbour, TRUE, TRUE, 0);
+                gtk_box_pack_start(GTK_BOX(vbox), direct_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[6],students_container_arr[row - 1][col - 1].name);
+
             }
         if (col - 1 >= 0 && row + 1 <= widget->row - 1)
             if (students_container_arr[row + 1][col - 1].hasSeat == true) {
-                GtkWidget *eighth_direct_neighbour = gtk_label_new(
+                direct_neighbour = gtk_label_new(
                         students_container_arr[row + 1][col - 1].name);
-                gtk_box_pack_start(GTK_BOX(vbox), eighth_direct_neighbour, TRUE, TRUE, 0);
+                gtk_box_pack_start(GTK_BOX(vbox), direct_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[7],students_container_arr[row + 1][col - 1].name);
+
             }
-        gtk_box_pack_start(GTK_BOX(vbox), indirect_neighbour, TRUE, TRUE, 0);
+        gtk_box_pack_start(GTK_BOX(vbox), indirect_neighbour_label, TRUE, TRUE, 0);
 
         if (row - 2 >= 0)
             if (students_container_arr[row - 2][col].hasSeat == true) {
-                first_direct_neighbour = gtk_label_new(students_container_arr[row - 2][col].name);
-                gtk_box_pack_start(GTK_BOX(vbox), first_direct_neighbour, TRUE, TRUE, 0);
+                indirect_neighbour = gtk_label_new(students_container_arr[row - 2][col].name);
+                gtk_box_pack_start(GTK_BOX(vbox), indirect_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[8],students_container_arr[row - 2][col].name);
+
             }
         if (row + 2 <= widget->row - 1)
             if (students_container_arr[row + 2][col].hasSeat == true) {
-                second_direct_neighbour = gtk_label_new(students_container_arr[row + 2][col].name);
-                gtk_box_pack_start(GTK_BOX(vbox), second_direct_neighbour, TRUE, TRUE, 0);
+                indirect_neighbour = gtk_label_new(students_container_arr[row + 2][col].name);
+                gtk_box_pack_start(GTK_BOX(vbox), indirect_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[9],students_container_arr[row + 2][col].name);
+
             }
         if (col - 2 >= 0)
             if (students_container_arr[row][col - 2].hasSeat == true) {
-                third_direct_neighbour = gtk_label_new(students_container_arr[row][col - 2].name);
-                gtk_box_pack_start(GTK_BOX(vbox), third_direct_neighbour, TRUE, TRUE, 0);
+                indirect_neighbour = gtk_label_new(students_container_arr[row][col - 2].name);
+                gtk_box_pack_start(GTK_BOX(vbox), indirect_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[10],students_container_arr[row][col - 2].name);
+
             }
         if (col + 2 <= widget->col - 1)
             if (students_container_arr[row][col + 2].hasSeat == true) {
-                fourth_direct_neighbour = gtk_label_new(students_container_arr[row][col + 2].name);
-                gtk_box_pack_start(GTK_BOX(vbox), fourth_direct_neighbour, TRUE, TRUE, 0);
-            }
+                indirect_neighbour = gtk_label_new(students_container_arr[row][col + 2].name);
+                gtk_box_pack_start(GTK_BOX(vbox), indirect_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[11],students_container_arr[row][col + 2].name);
 
+            }
 
         if (col + 2 <= widget->col - 1 && row - 2 >= 0)
             if (students_container_arr[row - 2][col + 2].hasSeat == true) {
-                GtkWidget *fifth_direct_neighbour = gtk_label_new(
+                indirect_neighbour = gtk_label_new(
                         students_container_arr[row - 2][col + 2].name);
-                gtk_box_pack_start(GTK_BOX(vbox), fifth_direct_neighbour, TRUE, TRUE, 0);
+                gtk_box_pack_start(GTK_BOX(vbox), indirect_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[12],students_container_arr[row - 2][col + 2].name);
+
             }
         if (col + 2 <= widget->col - 1 && row + 2 <= widget->row - 1)
             if (students_container_arr[row + 2][col + 2].hasSeat == true) {
-                GtkWidget *sixth_direct_neighbour = gtk_label_new(
+                indirect_neighbour = gtk_label_new(
                         students_container_arr[row + 2][col + 2].name);
-                gtk_box_pack_start(GTK_BOX(vbox), sixth_direct_neighbour, TRUE, TRUE, 0);
+                gtk_box_pack_start(GTK_BOX(vbox), indirect_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[13],students_container_arr[row + 2][col + 2].name);
+
             }
         if (col - 2 >= 0 && row - 2 >= 0)
             if (students_container_arr[row - 2][col - 2].hasSeat == true) {
-                GtkWidget *seventh_direct_neighbour = gtk_label_new(
+                indirect_neighbour = gtk_label_new(
                         students_container_arr[row - 2][col - 2].name);
-                gtk_box_pack_start(GTK_BOX(vbox), seventh_direct_neighbour, TRUE, TRUE, 0);
+                gtk_box_pack_start(GTK_BOX(vbox), indirect_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[14],  students_container_arr[row - 2][col - 2].name);
+
             }
         if (col - 2 >= 0 && row + 2 <= widget->row - 1)
             if (students_container_arr[row + 2][col - 2].hasSeat == true) {
-                GtkWidget *eighth_direct_neighbour = gtk_label_new(
+                indirect_neighbour = gtk_label_new(
                         students_container_arr[row + 2][col - 2].name);
-                gtk_box_pack_start(GTK_BOX(vbox), eighth_direct_neighbour, TRUE, TRUE, 0);
+                gtk_box_pack_start(GTK_BOX(vbox), indirect_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[15],students_container_arr[row + 2][col - 2].name);
+
             }
 
 
         if (col - 2 >= 0 && row + 1 <= widget->row - 1)
             if (students_container_arr[row + 1][col - 2].hasSeat == true) {
-                GtkWidget *eighth_direct_neighbour = gtk_label_new(
+                indirect_neighbour = gtk_label_new(
                         students_container_arr[row + 1][col - 2].name);
-                gtk_box_pack_start(GTK_BOX(vbox), eighth_direct_neighbour, TRUE, TRUE, 0);
+                gtk_box_pack_start(GTK_BOX(vbox), indirect_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[16],students_container_arr[row + 1][col - 2].name);
+
             }
         if (col - 2 >= 0 && row - 1 >= 0)
             if (students_container_arr[row - 1][col - 2].hasSeat == true) {
-                GtkWidget *eighth_direct_neighbour = gtk_label_new(
+                indirect_neighbour = gtk_label_new(
                         students_container_arr[row - 1][col - 2].name);
-                gtk_box_pack_start(GTK_BOX(vbox), eighth_direct_neighbour, TRUE, TRUE, 0);
+                gtk_box_pack_start(GTK_BOX(vbox), indirect_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[17],students_container_arr[row - 1][col - 2].name);
+
             }
         if (col + 2 <= widget->col - 1 && row + 1 <= widget->row - 1)
             if (students_container_arr[row + 1][col + 2].hasSeat == true) {
-                GtkWidget *eighth_direct_neighbour = gtk_label_new(
+                indirect_neighbour = gtk_label_new(
                         students_container_arr[row + 1][col + 2].name);
-                gtk_box_pack_start(GTK_BOX(vbox), eighth_direct_neighbour, TRUE, TRUE, 0);
+                gtk_box_pack_start(GTK_BOX(vbox), indirect_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[18],students_container_arr[row + 1][col + 2].name);
+
             }
         if (col + 2 <= widget->col - 1 && row - 1 >= 0)
             if (students_container_arr[row - 1][col + 2].hasSeat == true) {
-                GtkWidget *eighth_direct_neighbour = gtk_label_new(
+                indirect_neighbour = gtk_label_new(
                         students_container_arr[row - 1][col + 2].name);
-                gtk_box_pack_start(GTK_BOX(vbox), eighth_direct_neighbour, TRUE, TRUE, 0);
+                gtk_box_pack_start(GTK_BOX(vbox), indirect_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[19],students_container_arr[row - 1][col + 2].name);
+
             }
 
         if (col + 1 <= widget->col - 1 && row - 2 >= 0)
             if (students_container_arr[row - 2][col + 1].hasSeat == true) {
-                GtkWidget *eighth_direct_neighbour = gtk_label_new(
+                indirect_neighbour = gtk_label_new(
                         students_container_arr[row - 2][col + 1].name);
-                gtk_box_pack_start(GTK_BOX(vbox), eighth_direct_neighbour, TRUE, TRUE, 0);
+                gtk_box_pack_start(GTK_BOX(vbox), indirect_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[20],students_container_arr[row - 2][col + 1].name);
+
             }
 
         if (col + 1 <= widget->col - 1 && row + 2 <= widget->row - 1)
             if (students_container_arr[row + 2][col + 1].hasSeat == true) {
-                GtkWidget *eighth_direct_neighbour = gtk_label_new(
+                indirect_neighbour = gtk_label_new(
                         students_container_arr[row + 2][col + 1].name);
-                gtk_box_pack_start(GTK_BOX(vbox), eighth_direct_neighbour, TRUE, TRUE, 0);
+                gtk_box_pack_start(GTK_BOX(vbox), indirect_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[21],students_container_arr[row + 2][col + 1].name);
+
             }
 
         if (col - 1 >= 0 && row - 2 >= 0)
             if (students_container_arr[row - 2][col + 1].hasSeat == true) {
-                GtkWidget *eighth_direct_neighbour = gtk_label_new(
+                indirect_neighbour = gtk_label_new(
                         students_container_arr[row - 2][col - 1].name);
-                gtk_box_pack_start(GTK_BOX(vbox), eighth_direct_neighbour, TRUE, TRUE, 0);
+                gtk_box_pack_start(GTK_BOX(vbox), indirect_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[22],students_container_arr[row - 2][col - 1].name);
+
             }
 
         if (col - 1 >= 0 && row + 2 <= widget->row - 1)
             if (students_container_arr[row + 2][col + 1].hasSeat == true) {
-                GtkWidget *eighth_direct_neighbour = gtk_label_new(
+                indirect_neighbour = gtk_label_new(
                         students_container_arr[row + 2][col - 1].name);
-                gtk_box_pack_start(GTK_BOX(vbox), eighth_direct_neighbour, TRUE, TRUE, 0);
+                gtk_box_pack_start(GTK_BOX(vbox), indirect_neighbour, TRUE, TRUE, 0);
+                strcpy( current_StudentEntry->directIndirectNeighbour[23],students_container_arr[row + 2][col - 1].name);
+
             }
 
-        gtk_window_set_title(GTK_WINDOW(window), "Tooltip");
+
+
+        gtk_window_set_title(GTK_WINDOW(window), "Direct & Indirect Neighbour");
         gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
         gtk_container_set_border_width(GTK_CONTAINER(window), 15);
         gtk_box_set_homogeneous(GTK_BOX(vbox), TRUE);
         gtk_container_add(GTK_CONTAINER(window), vbox);
         gtk_widget_show_all(window);
     }
-}
-void destroy (GtkWidget *window){
-    g_object_ref_sink(window);
-    g_object_unref(window);
-    gtk_widget_destroy(window);
 }
 void change_view(GtkWidget *button, gpointer data) {
     if (strcmp((char *) data, "1") == 0) {
@@ -502,17 +538,17 @@ void change_view(GtkWidget *button, gpointer data) {
 }
 
 //TODO: censor the seats when e.g 25 % capacity is selected
-void radio_button_selected(GtkWidget *widget, gpointer data) {
+void radio_button_selected(GtkWidget *button, gpointer data) {
     if (strcmp((char *) data, "1") == 0) { // 100 %
-        if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON (widget))) {
+        if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON (button))) {
             g_print("Index %s button 1 is active \n", (char *) data);
         }
     } else if (strcmp((char *) data, "2") == 0) { // 50 %
-        if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON (widget))) {
+        if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON (button))) {
             g_print("Index %s button 2 is active \n", (char *) data);
         }
     } else if (strcmp((char *) data, "3") == 0) { // 25 %
-        if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON (widget))) {
+        if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON (button))) {
             g_print("Index %s button 3 is active \n", (char *) data);
         }
     }
@@ -531,23 +567,22 @@ gint convert_str_to_int(const gchar *tmp) {
     return (gint) result;
 }
 
-void get_col_entry_input(GtkWidget *widget, gpointer data) {
+void get_col_entry_input(GtkWidget *button, gpointer data) {
     if (data == NULL)
         return;
     MyWidget *myWidget = data;
     myWidget->col = convert_str_to_int(gtk_entry_get_text(GTK_ENTRY(myWidget->col_entry_input)));
-    //  printf("%d col\n", myWidget->col);
 }
 
-void get_row_entry_input(GtkWidget *widget, gpointer data) {
+void get_row_entry_input(GtkWidget *button, gpointer data) {
     if (data == NULL)
         return;
     MyWidget *myWidget = data;
     myWidget->row = convert_str_to_int(gtk_entry_get_text(GTK_ENTRY(myWidget->row_entry_input)));
-//    printf("%d row\n", myWidget->row);
+
 }
 
-void get_student_name_entry_input(GtkWidget *widget, gpointer data) {
+void get_student_name_entry_input(GtkWidget *button, gpointer data) {
     if (data == NULL)
         return;
     MyWidget *myWidget = data;
@@ -571,17 +606,16 @@ void get_student_name_entry_input(GtkWidget *widget, gpointer data) {
         }
 }
 
-void get_direct_neighbour() {
-
-}
 
 /*
  *
-
-
  * #####################################################################################################################
  *                      functions below  ->   not used
-
+void destroy (GtkWidget *window){
+    g_object_ref_sink(window);
+    g_object_unref(window);
+    gtk_widget_destroy(window);
+}
 void display_pattern(int rows, int cols, GtkWidget *window, GtkWidget **entry, GtkWidget **hbox, GtkWidget *vbox) {
     const int NUMBER_OF_STUDENTS = rows * cols;
     if (rows * cols > MAX_SEATS_COUNT) {

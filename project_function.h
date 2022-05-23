@@ -25,6 +25,7 @@ typedef struct StudentEntry {
     const gchar *name;
     bool found;
     Cell cell;
+    char directIndirectNeighbour[25][20];
 } StudentEntry;
 
 typedef struct Widget {
@@ -35,12 +36,13 @@ typedef struct Widget {
     GtkWidget *col_entry_input;
     GtkWidget *row_entry_input;
     GtkWidget **entry;
+    GtkWidget **image;
     gint row;
     gint col;
 } MyWidget;
 
-#define ROWS_DEFAULT 2
-#define COLS_DEFAULT 2
+#define ROWS_DEFAULT 4
+#define COLS_DEFAULT 4
 #define MAX_SEATS_COUNT ROWS_DEFAULT*COLS_DEFAULT
 
 MyWidget *widget;
@@ -50,19 +52,23 @@ GtkWidget *create_view1(MyWidget *view);
 
 GtkWidget *create_view2(MyWidget *view);
 
-GtkWidget *create_view3(MyWidget *widget);
+GtkWidget *create_view3(MyWidget *view);
 
 void create_view4(MyWidget *view, StudentEntry *current_StudentEntry);
 
 void change_view(GtkWidget *button, gpointer data);
 
-void radio_button_selected(GtkWidget *widget, gpointer data);
+void radio_button_selected(GtkWidget *button, gpointer data);
 
-void get_col_entry_input(GtkWidget *widget, gpointer data);
+void get_col_entry_input(GtkWidget *button, gpointer data);
 
-void get_row_entry_input(GtkWidget *widget, gpointer data);
+void get_row_entry_input(GtkWidget *button, gpointer data);
 
-void get_student_name_entry_input(GtkWidget *widget, gpointer data);
+void get_student_name_entry_input(GtkWidget *button, gpointer data);
+
+void get_student_entry_input(GtkWidget *button, gpointer data);
+
+bool validate_user_input(StudentEntry *student_entry_input, Classroom *current_classroom);
 
 void get_direct_neighbour();
 
