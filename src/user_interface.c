@@ -622,9 +622,6 @@ void init_classroom(GtkWidget *button, gpointer data) {
         classroom->students[i].hasSeat = true;
     }
 //    g_print("%d actual value\n",z * myWidget->col + s);
-    if (myWidget->user_choice == 50){
-        //TODO: ALGO FOR 50 %
-    }
 
     if (myWidget->user_choice == 25) {
         for (int i = 0; i < NUMBER_OF_STUDENTS; ++i) {
@@ -641,6 +638,39 @@ void init_classroom(GtkWidget *button, gpointer data) {
             }
         }
     }
+
+    //Users choice 50%
+    bool first_element_row_state = true, temp_state;
+
+    if (myWidget->user_choice == 50) {
+
+        for(int i = 0; i < myWidget->row; i++){
+
+            first_element_row_state = !first_element_row_state;
+            
+            temp_state = first_element_row_state;
+
+            for(int j = 0; j < myWidget->col; j++){
+                
+                classroom->students[i * myWidget->col + j].hasSeat = !temp_state;
+
+                temp_state = !temp_state;
+            }
+        }
+    }
+
+    //Users choice 100%
+    if (myWidget->user_choice == 100) {
+
+        for(int i = 0; i < myWidget->row; i++){
+
+            for(int j = 0; j < myWidget->col; j++){
+                
+                classroom->students[i * myWidget->col + j].hasSeat = true;
+            }
+        }
+    }
+
 }
 
 void get_student_name_entry_input(GtkWidget *button, gpointer data) {
