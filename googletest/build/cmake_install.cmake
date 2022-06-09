@@ -1,4 +1,4 @@
-# Install script for directory: /home/jv/Coding/sandbox/cmake_module_integration2/googletest
+# Install script for directory: /home/jvalle/Coding/gruppe_v/googletest
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/jv/Coding/sandbox/cmake_module_integration2/googletest/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/jvalle/Coding/gruppe_v/googletest/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

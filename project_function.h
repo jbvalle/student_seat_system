@@ -37,6 +37,7 @@ typedef struct Widget {
     GtkWidget *row_entry_input;
     GtkWidget **entry;
     GtkWidget **image;
+    int user_choice;
     gint row;
     gint col;
 } MyWidget;

@@ -20,22 +20,21 @@ int main(int argc, char **argv) {
     GtkCssProvider *provider;
     GdkDisplay *display;
     GdkScreen *screen;
-
     provider = gtk_css_provider_new ();
     display = gdk_display_get_default ();
     screen = gdk_display_get_default_screen (display);
     gtk_style_context_add_provider_for_screen (screen, GTK_STYLE_PROVIDER (provider),  GTK_STYLE_PROVIDER_PRIORITY_USER);
 
-    const gchar *myCssFile = "theme.css";
+    const gchar *myCssFile = "../cmake-build-debug-coverage/theme.css";
     GError *error = 0;
-
     gtk_css_provider_load_from_file(provider, g_file_new_for_path(myCssFile), &error);
     g_object_unref (provider);
 
     GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     GtkWidget *vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
-
+    /*view wird erneut übergeben zum testen.*/
     widget->view1 = create_view1(widget);
+
     widget->frame = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
 
     g_object_ref (widget->view1);
