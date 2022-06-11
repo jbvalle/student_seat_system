@@ -22,8 +22,11 @@ all: clean $(OBJ) $(TARGET) run
 $(TARGET): $(OBJ)
 	@$(CC) -o $@ $(INC_FLAGS) $^ $(LDFLAGS) $(CFLAGS)
 
+
 run:
 	@./$(TARGET)
+
+
 
 clean:
 	@rm -rf .*swp .*swo $(TARGET) *.o
