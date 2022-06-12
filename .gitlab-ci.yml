@@ -13,8 +13,9 @@ build:
 test:
   stage: test
   script:
-    - ./
-    - ./testRunner --gtest_output="xml:./"
+    #- ./
+    #- ./testRunner --gtest_output="xml:./"
+    - ./testRunner
   artifacts:
     when: always
     paths: 
