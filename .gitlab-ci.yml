@@ -8,8 +8,8 @@ build:
     - bash build_gtest.sh
   artifacts:
     paths:
-      - ./
-      - ../
+      - ./*
+      - ../*
       - build/*
 
 test:
