@@ -9,12 +9,14 @@ build:
   artifacts:
     paths:
       - ./
+      - ../
+      - build/*
 
 test:
   stage: test
   script:
-    - make test
-    - cd testing && make && make run &&./test --gtest_output="xml:./"
+    - cd build && ./testRunner
+    #- cd testing && make && make run &&./test --gtest_output="xml:./"
   artifacts:
     when: always
     paths: 
