@@ -5,7 +5,7 @@ stages:
 build:
   stage: build
   script:
-    - bash build_gtest.sh
+    - bash build_gtest.sh && mkdir -p build && cd build && cmake .. & make
   artifacts:
     paths:
       - ./
@@ -13,8 +13,8 @@ build:
 test:
   stage: test
   script:
-    - make test
-    - cd testing && make && make run &&./test --gtest_output="xml:./"
+    - ./
+    - ./testRunner --gtest_output="xml:./"
   artifacts:
     when: always
     paths: 
