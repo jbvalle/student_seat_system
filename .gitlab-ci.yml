@@ -16,7 +16,7 @@ test:
   script:
     #- ./
     #- ./testRunner --gtest_output="xml:./"
-    - dir && pwd && build && dir
+    - dir && pwd && cd build && dir
   artifacts:
     when: always
     paths: 
