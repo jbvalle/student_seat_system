@@ -84,9 +84,7 @@ void {\bfseries get\+\_\+direct\+\_\+neighbour} ()
 \mbox{\hyperlink{structClassroom}{Classroom}} $\ast$ \mbox{\hyperlink{project__function_8h_a63f31e62cbfe3669dcce8f5bfb15ea34}{generate\+\_\+50p\+\_\+coverage\+\_\+pattern}} (\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$classroom, \mbox{\hyperlink{project__function_8h_a252a1f9d0ba05cce4c5a62440b69b365}{My\+Widget}} $\ast$my\+Widget)
 \begin{DoxyCompactList}\small\item\em Function sets seating pattern to 50\% coverage. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structClassroom}{Classroom}} $\ast$ \mbox{\hyperlink{project__function_8h_a282e17e6ffd51d71fc656f20e7aa7c7c}{generate\+\_\+100p\+\_\+coverage\+\_\+pattern}} (\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$classroom, \mbox{\hyperlink{project__function_8h_a252a1f9d0ba05cce4c5a62440b69b365}{My\+Widget}} $\ast$my\+Widget)
-\begin{DoxyCompactList}\small\item\em Function sets seating pattern to 100\% coverage. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{project__function_8h_a20cb7d45d633e9f37b357ee86a67d938}{gtk\+\_\+gui\+\_\+main}} (int argc, char $\ast$$\ast$argv)
-\begin{DoxyCompactList}\small\item\em Loads first Window for user interaction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Function sets seating pattern to 100\% coverage. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -364,22 +362,7 @@ Fetches all student ID typed in by the user.
 \mbox{\texttt{ in}}  & {\em data} & containing all typed in values of user \\
 \hline
 \end{DoxyParams}
-Itterate through all Seats and fetch student ID if available\mbox{\Hypertarget{project__function_8h_a20cb7d45d633e9f37b357ee86a67d938}\label{project__function_8h_a20cb7d45d633e9f37b357ee86a67d938}} 
-\index{project\_function.h@{project\_function.h}!gtk\_gui\_main@{gtk\_gui\_main}}
-\index{gtk\_gui\_main@{gtk\_gui\_main}!project\_function.h@{project\_function.h}}
-\doxysubsubsection{\texorpdfstring{gtk\_gui\_main()}{gtk\_gui\_main()}}
-{\footnotesize\ttfamily int gtk\+\_\+gui\+\_\+main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
-
-
-
-Loads first Window for user interaction. 
-
-
-\begin{DoxyEnumerate}
-\item Allocate G\+UI Objects for first window
-\item Assign Process termination if window is closed
-\item Load first window view1 into frame for user interaction
-\end{DoxyEnumerate}\mbox{\Hypertarget{project__function_8h_a2afc665e3803ab3f06391bfebe113748}\label{project__function_8h_a2afc665e3803ab3f06391bfebe113748}} 
+Itterate through all Seats and fetch student ID if available\mbox{\Hypertarget{project__function_8h_a2afc665e3803ab3f06391bfebe113748}\label{project__function_8h_a2afc665e3803ab3f06391bfebe113748}} 
 \index{project\_function.h@{project\_function.h}!radio\_button\_selected@{radio\_button\_selected}}
 \index{radio\_button\_selected@{radio\_button\_selected}!project\_function.h@{project\_function.h}}
 \doxysubsubsection{\texorpdfstring{radio\_button\_selected()}{radio\_button\_selected()}}
