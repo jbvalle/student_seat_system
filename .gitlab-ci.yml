@@ -28,3 +28,4 @@ clean:
   stage: clean
   script:
     - rm -rf build
+
