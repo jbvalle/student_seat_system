@@ -1,3 +1,7 @@
+/**
+ *@file user_interface.c
+ *@brief Contains GTK GUI Descriptions and Algorithms for 1. Pattern Generating | 2. Student ID Input | 3. Request Direct/Indirect Neighbours
+ */
 #include "../inc/project_function.h"
 #include <errno.h>
 
@@ -7,16 +11,24 @@ static int reference_cnt_view2 = 0; //
 static int reference_cnt_view3 = 0; //
 void init_classroom(GtkWidget *button, gpointer data);
 
-
+/**
+ *@brief Function sets seating pattern to 25% coverage
+ *@param[in] classroom datatype containing all students'' ID | Seating | Coordinates
+ *@param[in] myWidget datatype containing all windows and gui objectst, used to access and change seating
+ *@param[out] classroom returns datatype with changed positions
+ */
 Classroom* generate_25p_coverage_pattern(Classroom *classroom, MyWidget *myWidget){
 
+    ///1. Initialize total number of students
     const int NUMBER_OF_STUDENTS = myWidget->row * myWidget->col;
 
+    ///2. Initialize all seating positions as not occupied
     for (int i = 0; i < NUMBER_OF_STUDENTS; ++i) {
         classroom->students[i].hasSeat = false;
     }
     int tmp ;
 
+    ///3. Concurrently change seating to occupied according to 25% Seating Cov Algorithm
     for(int z = myWidget->row ; z >= 0; z=z-2){
         for(int s = 0; s < myWidget->col ; s=s+2){
             tmp = z * myWidget->col + s;
@@ -27,16 +39,22 @@ Classroom* generate_25p_coverage_pattern(Classroom *classroom, MyWidget *myWidge
         }
     }
 
+    ///4. Return classroom type containing new seating order
     return classroom;
     
 }
-
-
+/**
+ *@brief Function sets seating pattern to 50% coverage
+ *@param[in] classroom datatype containing all students' ID | Seating | Coordinates
+ *@param[in] myWidget datatype containing all windows and gui objectst, used to access and change seating
+ *@param[out] classroom returns datatype with changed positions
+ */
 Classroom* generate_50p_coverage_pattern(Classroom *classroom, MyWidget *myWidget){
 
-    //Users choice 50%
+    ///1. Initialize a boolean variable for toggling 
     bool first_element_row_state = true, temp_state;
 
+    ///2. Run through all seats, while toggling the seating state
     for(int i = 0; i < myWidget->row; i++){
 
         first_element_row_state = !first_element_row_state;
@@ -51,13 +69,19 @@ Classroom* generate_50p_coverage_pattern(Classroom *classroom, MyWidget *myWidge
         }
     }
 
+    ///4. Return classroom type containing new seating order
     return classroom;
 }
 
-
+/**
+ *@brief Function sets seating pattern to 100% coverage
+ *@param[in] classroom datatype containing all students' ID | Seating | Coordinates
+ *@param[in] myWidget datatype containing all windows and gui objectst, used to access and change seating
+ *@param[out] classroom returns datatype with changed positions
+ */
 Classroom* generate_100p_coverage_pattern(Classroom *classroom, MyWidget *myWidget){
     
-    //Users choice 100%
+    ///1. Run through every position and set all as occupied
     for(int i = 0; i < myWidget->row; i++){
 
         for(int j = 0; j < myWidget->col; j++){
@@ -66,10 +90,17 @@ Classroom* generate_100p_coverage_pattern(Classroom *classroom, MyWidget *myWidg
         }
     }
 
+    ///2. Return classroom type containing new seating order
     return classroom;
 }
 
+/**
+ *@brief Defines all GTK GUI Object of 1. window, used for setting coverage and row | column adjustment
+ *@param[in] view Input a widget of same datatype, manipulates MyWidget Attributes for first Window
+ *@param[out] window Outputs new window containing initialized GTK Objects
+ */
 GtkWidget *create_view1(MyWidget *view) {
+    ///1. Initialize all GtkWidget Object for 1. window
     GtkWidget *window = gtk_scrolled_window_new(NULL, NULL);
     GtkWidget *vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     GtkWidget *generate_button = gtk_button_new_with_label("generate");
@@ -94,6 +125,7 @@ GtkWidget *create_view1(MyWidget *view) {
             gtk_radio_button_get_group(GTK_RADIO_BUTTON(radio_button)), "25 % ");
 
 
+    ///2. Define function calls for clicked Button
     g_signal_connect(generate_button, "clicked", G_CALLBACK(get_row_entry_input), view);
     g_signal_connect(generate_button, "clicked", G_CALLBACK(get_col_entry_input), view);
     g_signal_connect (generate_button, "clicked", G_CALLBACK(change_view), "2");
@@ -103,6 +135,7 @@ GtkWidget *create_view1(MyWidget *view) {
     g_signal_connect (radio_button1, "toggled", G_CALLBACK(radio_button_selected), (gpointer) "2");
     g_signal_connect (radio_button2, "toggled", G_CALLBACK(radio_button_selected), (gpointer) "3");
 
+    ///3. Add all initialized GtkWidgets to container of first window
     gtk_box_pack_start(GTK_BOX(radio_button_box), label_capacity, TRUE, TRUE, 0);
     gtk_box_pack_start(GTK_BOX(radio_button_box), radio_button, TRUE, TRUE, 0);
     gtk_box_pack_start(GTK_BOX(radio_button_box), radio_button1, TRUE, TRUE, 0);
@@ -129,20 +162,33 @@ GtkWidget *create_view1(MyWidget *view) {
     gtk_container_add(GTK_CONTAINER(window), vbox);
     gtk_widget_show_all(window);
 
+    ///4. Return GtkWidget Window containing all objects and functioncall of first window
     return window;
 }
+/**
+ *@brief Free allocated memory for classroom datatype
+ *@param[in] class Input Classroom type variable which should be freed
+ */
 void free_classroom(Classroom *class){
     free(class->students);
     free(class);
 }
+/**
+ *@brief Defines all GTK GUI Object of 2. window, used for student ID Input and Generating the final pattern
+ *@param[in] view Input a widget of same datatype, manipulates MyWidget Attributes for second window
+ *@param[out] window Outputs new window containing initialized GTK Objects
+ */
 GtkWidget *create_view2(MyWidget *view) {
+    ///1. Initialize Rows and Columns for default set up in case no row | cols input has been made in 1. Window
     if (view->row <= 0 || view->row >= 200 || view->col >= 200 || view->col <= 0) {
         view->row = ROWS_DEFAULT; // default when user does not type anything or enters 0 or more then 200
         view->col = COLS_DEFAULT; // default when user does not type anything or enters 0
     }
+    ///2. Initialize Classroom Dataype -> allocates memory for student datatype
     init_classroom(NULL,view);
     const int NUMBER_OF_STUDENTS = view->row * view->col;
 
+    ///3. Initialize GUI Objects of second window
     GtkWidget *window = gtk_scrolled_window_new(NULL, NULL);
     GtkWidget *vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     GtkWidget *option_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
@@ -155,15 +201,20 @@ GtkWidget *create_view2(MyWidget *view) {
     GtkWidget **student_container = malloc(view->row * (sizeof(GtkWidget)));
     view->image = malloc(NUMBER_OF_STUDENTS * (sizeof(GtkWidget)));
     view->entry = malloc(NUMBER_OF_STUDENTS * (sizeof(GtkWidget)));
-
+    
+    ///4. Implement Error Handling
     if (hbox == NULL || student_container == NULL || view->image == NULL || view->entry == NULL) {
         perror("malloc hbox -> ");
         exit(EXIT_FAILURE);
     }
+
+    ///5. Initialize horizontal box containers
     for (int i = 0; i < view->row; i++) {
         hbox[i] = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
         gtk_box_set_homogeneous(GTK_BOX(hbox[i]), TRUE);
     }
+
+    ///6. Assign Icon of Seating position depending if occupied
     for (int i = 0; i < NUMBER_OF_STUDENTS; i++) {
         if (classroom->students[i].hasSeat == false) {
             view->image[i] = gtk_image_new_from_file("../resources/delete.png");
@@ -175,6 +226,7 @@ GtkWidget *create_view2(MyWidget *view) {
             gtk_widget_set_name(view->image[i], "icon_png");
         }
     }
+    ///7. Add the icons to the gtk containers
     int student_cnt = 0;
     for (int i = 0; i < view->row; i++) {
         for (int j = 0; j < view->col; j++) {
@@ -192,16 +244,19 @@ GtkWidget *create_view2(MyWidget *view) {
             student_cnt++;
         }
     }
+
+    ///8. Add all boxes to vertical container
     for (int i = 0; i < view->row; i++)
         gtk_box_pack_start(GTK_BOX(vbox), hbox[i], 0, 0, 10);
 
-
+    ///9. Define Function calls | save_button -> call 3. Window | return_button -> call 1. Window
     g_signal_connect (return_button, "clicked", G_CALLBACK(change_view), "1");
     g_signal_connect (return_button, "clicked", G_CALLBACK(free_classroom), classroom);
     g_signal_connect (save_button, "clicked", G_CALLBACK(get_student_name_entry_input), view);
     g_signal_connect (save_button, "clicked", G_CALLBACK(change_view), "3");
 
 
+    ///10. Add all objects to main containers 
     gtk_box_pack_start(GTK_BOX(option_box), return_button, 0, 0, 10);
     gtk_box_pack_start(GTK_BOX(option_box), save_button, 0, 0, 10);
     gtk_box_pack_start(GTK_BOX(vbox), option_box, 1, 1, 5);
@@ -221,9 +276,16 @@ GtkWidget *create_view2(MyWidget *view) {
     free(student_container);
     free(hbox);
 
+    ///11. Return generated window
     return window;
 }
 
+/**
+ *@brief If Student is requested, check all students, if match is found return Coordinates
+ *@param[in] student_entry_input Used for Student ID checking and saving Neighbours
+ *@param[in] current_classroom Used for Assign student coordinates if student ID match occurs after a request
+ *@param[out] boolean true/false if match was found
+ */
 bool validate_user_input(StudentEntry *student_entry_input, Classroom *current_classroom) {
     for (int i = 0; i < current_classroom->number_of_students; ++i)
         if (strcmp(student_entry_input->name, current_classroom->students[i].name) == 0 &&
@@ -238,6 +300,11 @@ bool validate_user_input(StudentEntry *student_entry_input, Classroom *current_c
     return false;
 }
 
+/**
+ *@brief Fetching Student ID name from entry widget
+ *@param[in] button Function call initialized if button pressed 
+ *@param[in] data gpointer type variable -> StudentEntry Variable used for overwriting datasets with fetched student ID
+ */
 void get_student_entry_input(GtkWidget *button, gpointer data) {
     if (data == NULL)
         return;
@@ -248,10 +315,15 @@ void get_student_entry_input(GtkWidget *button, gpointer data) {
     }
     //create_view4(NULL,student_entry_input);
 }
-
+/**
+ *@brief Defines all GTK GUI Object of 3. window, used for displaying generated pattern
+ *@param[in] view Input a widget of same datatype, manipulates MyWidget Attributes for first Window
+ *@param[out] window Outputs new window containing initialized GTK Objects
+ */
 GtkWidget *create_view3(MyWidget *view) {
-    const int NUMBER_OF_STUDENTS = view->row * view->col;
 
+    ///1. Allocate GTK Objects for displaying window
+    const int NUMBER_OF_STUDENTS = view->row * view->col;
 
     GtkWidget **label_students_names = malloc(NUMBER_OF_STUDENTS * (sizeof(GtkWidget)));
     view->image = malloc(NUMBER_OF_STUDENTS * (sizeof(GtkWidget)));
@@ -269,21 +341,25 @@ GtkWidget *create_view3(MyWidget *view) {
     gtk_widget_set_name(input_button, "direct_indirect_button");
     gtk_widget_set_name(student_entry_input->entry, "direct_indirect_entry");
     //  g_signal_connect (input_button, "clicked", G_CALLBACK(get_direct_neighbour), "1");
+    ///2. Assign Function call for fetching student ID name from entered entry widget
     g_signal_connect (input_button, "clicked", G_CALLBACK(get_student_entry_input), student_entry_input);
 
     g_signal_connect (input_button, "clicked", G_CALLBACK(create_view4), student_entry_input);
 
 
+    ///3. Implement Error Handling
     if (hbox == NULL || student_container == NULL || view->image == NULL || label_students_names == NULL) {
         perror("malloc -> ");
         exit(EXIT_FAILURE);
     }
+
+    ///4. Allocate Box containers for gui objects
     for (int i = 0; i < view->row; i++) {
         hbox[i] = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
         gtk_box_set_homogeneous(GTK_BOX(hbox[i]), TRUE);
     }
 
-
+    ///5. Assign student IDs to labels and icons to seat position
     for (int i = 0; i < NUMBER_OF_STUDENTS; ++i) {
         label_students_names[i] = gtk_label_new(classroom->students[i].name);
         gtk_widget_set_name(label_students_names[i], "students_names_label");
@@ -293,7 +369,9 @@ GtkWidget *create_view3(MyWidget *view) {
         } else
             view->image[i] = gtk_image_new_from_file("../resources/delete.png");
     }
-int student_cnt = 0;
+    
+    ///6. Add add objects to main containers of window
+    int student_cnt = 0;
     for (int i = 0; i < view->row; i++) {
         for (int j = 0; j < view->col; j++) {
             student_container[i] = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
@@ -327,15 +405,24 @@ int student_cnt = 0;
     free(student_container);
     free(hbox);
 
+    ///7. Return generated window
     return window;
 }
 
+/**
+ *@brief Popup window for displaying direct and indirect Neighbours 
+ *@param[in] view
+ *@param[in] current_StudentEntry
+ */
 void create_view4(MyWidget *view, StudentEntry *current_StudentEntry) {
+
+    ///1. Initialize containers nad variables for Neighbour variable
     GtkWidget *window;
     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 
     GtkWidget *vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-
+    
+    ///2. Check if requested student ID exists if not return Error Message 
     if (current_StudentEntry->found == false) {
         GtkWidget *alert_window = gtk_message_dialog_new(GTK_WINDOW(window),
                                                          GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT |
@@ -347,6 +434,7 @@ void create_view4(MyWidget *view, StudentEntry *current_StudentEntry) {
         gtk_dialog_run(GTK_DIALOG(alert_window));
         gtk_widget_destroy(alert_window);
     } else {
+        ///3. Fetch if within boundaries, the names of direct indirect Neighbours and assign to label and add to container
         int col = current_StudentEntry->cell.col;
         int row = current_StudentEntry->cell.row;
         GtkWidget *direct_neighbour;
@@ -383,6 +471,7 @@ void create_view4(MyWidget *view, StudentEntry *current_StudentEntry) {
                 students_container_arr[i][j] = classroom->students[k++];
 
 
+        ///4. Direct Neighbour: Fetch Student ID depending on relative position -> Create Label -> Stack on container
         if (row - 1 >= 0)
             if (students_container_arr[row - 1][col].hasSeat == true) {
                 direct_neighbour = gtk_label_new(students_container_arr[row - 1][col].name);
@@ -443,6 +532,9 @@ void create_view4(MyWidget *view, StudentEntry *current_StudentEntry) {
             }
 
         gtk_box_pack_start(GTK_BOX(vbox), indirect_neighbour_label, TRUE, TRUE, 0);
+
+
+        ///5. Indirect Neighbour: Fetch Student ID depending on relative position -> Create Label -> Stack on container
 
         if (row - 2 >= 0)
             if (students_container_arr[row - 2][col].hasSeat == true) {
@@ -583,6 +675,7 @@ void create_view4(MyWidget *view, StudentEntry *current_StudentEntry) {
             }
 
 
+        ///6. Add all boxes to main container of window
         gtk_window_set_title(GTK_WINDOW(window), "Direct & Indirect Neighbour");
         gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
         gtk_container_set_border_width(GTK_CONTAINER(window), 15);
@@ -591,7 +684,11 @@ void create_view4(MyWidget *view, StudentEntry *current_StudentEntry) {
         gtk_widget_show_all(window);
     }
 }
-
+/**
+ *@brief Changes current window depending on user request, current window container is replaced with requested window
+ *@param[in] button Function call initialized if button pressed
+ *@param[in] data Contains the users window request 
+ */
 void change_view(GtkWidget *button, gpointer data) {
     if (strcmp((char *) data, "1") == 0) {
         gtk_container_remove(GTK_CONTAINER (widget->frame), widget->view2);
@@ -685,7 +782,7 @@ void init_classroom(GtkWidget *button, gpointer data) {
     }
 //    g_print("%d actual value\n",z * myWidget->col + s);
 
- //Generate Coverage Pattern depending on User's choice
+ //Generate Coverage Pattern depending on Users choice
     if(myWidget->user_choice == 25)(void)generate_25p_coverage_pattern(classroom, myWidget);
 
     if(myWidget->user_choice == 50)(void)generate_50p_coverage_pattern(classroom, myWidget);

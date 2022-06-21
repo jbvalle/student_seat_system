@@ -4,10 +4,14 @@
 #include <gtk/gtk.h>
 #include <stdbool.h>
 
+/**
+ * Saves Student Coordinates
+ */
 typedef struct Cell {
     int row;
     int col;
 } Cell;
+
 
 typedef struct Student {
     char name[20];

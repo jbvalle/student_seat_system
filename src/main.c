@@ -1,3 +1,8 @@
+/**
+ *@file main.c
+ *@brief executes main gtk graphical user interface
+ */
+
 #include <gtk/gtk.h>
 #include "../inc/project_function.h"
 
