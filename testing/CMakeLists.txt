@@ -1,4 +1,7 @@
 project(testRunner LANGUAGES C CXX)
+
+set(CMAKE_CXX_FLAGS --coverage)
+
 include(FetchContent)
 FetchContent_Declare(googletest
         GIT_REPOSITORY https://github.com/google/googletest
@@ -9,7 +12,6 @@ if(NOT googletest_POPULATED)
     FetchContent_Populate(googletest)
     add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BUILD_DIR})
 endif()
-
 
 add_executable(testRunner testing/test.cxx  ../src/user_interface.c ../inc/project_function.h)
 

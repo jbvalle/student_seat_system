@@ -217,12 +217,12 @@ GtkWidget *create_view2(MyWidget *view) {
     ///6. Assign Icon of Seating position depending if occupied
     for (int i = 0; i < NUMBER_OF_STUDENTS; i++) {
         if (classroom->students[i].hasSeat == false) {
-            view->image[i] = gtk_image_new_from_file("../resources/delete.png");
+            view->image[i] = gtk_image_new_from_file("resources/delete.png");
             gtk_widget_set_name(view->image[i], "delete_png");
         } else {
             view->entry[i] = gtk_entry_new();
             gtk_widget_set_name(view->entry[i], "entry");
-            view->image[i] = gtk_image_new_from_file("../resources/icon.png");
+            view->image[i] = gtk_image_new_from_file("resources/icon.png");
             gtk_widget_set_name(view->image[i], "icon_png");
         }
     }
@@ -364,10 +364,10 @@ GtkWidget *create_view3(MyWidget *view) {
         label_students_names[i] = gtk_label_new(classroom->students[i].name);
         gtk_widget_set_name(label_students_names[i], "students_names_label");
         if (classroom->students[i].hasSeat == true) {
-            view->image[i] = gtk_image_new_from_file("../resources/icon.png");
+            view->image[i] = gtk_image_new_from_file("resources/icon.png");
             gtk_widget_set_name(view->image[i], "icon_png");
         } else
-            view->image[i] = gtk_image_new_from_file("../resources/delete.png");
+            view->image[i] = gtk_image_new_from_file("resources/delete.png");
     }
     
     ///6. Add add objects to main containers of window
@@ -789,10 +789,7 @@ void get_row_entry_input(GtkWidget *button, gpointer data) {
 void init_classroom(GtkWidget *button, gpointer data) {
     ///1. Allocate memory for requested students depending on rows and columns
     MyWidget *myWidget = data;
-    if (myWidget->row <= 0 || myWidget->row >= 200 || myWidget->col >= 200 || myWidget->col <= 0) {
-        myWidget->row = ROWS_DEFAULT; // default when user does not type anything or enters 0 or more then 200
-        myWidget->col = COLS_DEFAULT; // default when user does not type anything or enters 0
-    }
+
     const int NUMBER_OF_STUDENTS = myWidget->row * myWidget->col;
     classroom = malloc(sizeof(Classroom));
     classroom->students = (Student *) malloc(NUMBER_OF_STUDENTS * sizeof(Student));
@@ -804,11 +801,11 @@ void init_classroom(GtkWidget *button, gpointer data) {
 //    g_print("%d actual value\n",z * myWidget->col + s);
 
    ///2. Generate Coverage Pattern depending on Users choice
-    if(myWidget->user_choice == 25)(void)generate_25p_coverage_pattern(classroom, myWidget);
+    if(myWidget->user_choice == 25)classroom = generate_25p_coverage_pattern(classroom, myWidget);
 
-    if(myWidget->user_choice == 50)(void)generate_50p_coverage_pattern(classroom, myWidget);
+    if(myWidget->user_choice == 50)classroom = generate_50p_coverage_pattern(classroom, myWidget);
 
-    if(myWidget->user_choice == 100)(void)generate_100p_coverage_pattern(classroom, myWidget);
+    if(myWidget->user_choice == 100)classroom = generate_100p_coverage_pattern(classroom, myWidget);
 }
 /**
  *@brief Fetches all student ID typed in by the user
@@ -845,56 +842,7 @@ void get_student_name_entry_input(GtkWidget *button, gpointer data) {
 
         }
 }
-/**
- *@brief Loads first Window for user interaction
- */
 
-int gtk_gui_main(int argc, char **argv){
-
-    ///1. Allocate GUI Objects for first window
-    widget = malloc(sizeof(*widget));
-    gtk_init(&argc, &argv);
-
-    GtkCssProvider *provider;
-    GdkDisplay *display;
-    GdkScreen *screen;
-    provider = gtk_css_provider_new ();
-    display = gdk_display_get_default ();
-    screen = gdk_display_get_default_screen (display);
-    gtk_style_context_add_provider_for_screen (screen, GTK_STYLE_PROVIDER (provider),  GTK_STYLE_PROVIDER_PRIORITY_USER);
-
-    const gchar *myCssFile = "../cmake-build-debug-coverage/theme.css";
-    GError *error = 0;
-    gtk_css_provider_load_from_file(provider, g_file_new_for_path(myCssFile), &error);
-    g_object_unref (provider);
-
-    GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    GtkWidget *vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
-    /*view wird erneut übergeben zum testen.*/
-    widget->view1 = create_view1(widget);
-
-    widget->frame = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
-
-    g_object_ref (widget->view1);
-
-    ///2. Assign Process termination if window is closed
-    g_signal_connect (window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
-
-    ///3. Load first window view1 into frame for user interaction
-    gtk_box_pack_start(GTK_BOX (widget->frame), widget->view1, 10, 10, 10);
-    gtk_box_pack_start(GTK_BOX (vbox), widget->frame, 10, 10, 10);
-
-    gtk_widget_set_size_request(window, 400, 400);
-    gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-    gtk_window_set_default_size(GTK_WINDOW(window), 800, 800);
-
-    gtk_container_add(GTK_CONTAINER (window), vbox);
-    gtk_widget_show_all(window);
-
-    gtk_main();
-    
-    return 0;
-}
 /*
  *
  * #####################################################################################################################

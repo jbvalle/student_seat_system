@@ -1,5 +1,5 @@
-\hypertarget{user__interface_8c}{}\doxysection{/home/jvalle/\+Coding/bic02/student\+\_\+seat\+\_\+system/src/user\+\_\+interface.c File Reference}
-\label{user__interface_8c}\index{/home/jvalle/Coding/bic02/student\_seat\_system/src/user\_interface.c@{/home/jvalle/Coding/bic02/student\_seat\_system/src/user\_interface.c}}
+\hypertarget{user__interface_8c}{}\doxysection{/home/jv/\+Coding/gruppe\+\_\+v/src/user\+\_\+interface.c File Reference}
+\label{user__interface_8c}\index{/home/jv/Coding/gruppe\_v/src/user\_interface.c@{/home/jv/Coding/gruppe\_v/src/user\_interface.c}}
 
 
 Contains G\+TK G\+UI Descriptions and Algorithms for 1. Pattern Generating $\vert$ 2. \mbox{\hyperlink{structStudent}{Student}} ID Input $\vert$ 3. Request Direct/\+Indirect Neighbours.  
@@ -47,9 +47,7 @@ void \mbox{\hyperlink{user__interface_8c_aed6032be7269e0015be13dd78f30b62c}{get\
 void \mbox{\hyperlink{user__interface_8c_af7ccc9fb970b1f2c80fb826cd5a8fde3}{get\+\_\+row\+\_\+entry\+\_\+input}} (Gtk\+Widget $\ast$button, gpointer data)
 \begin{DoxyCompactList}\small\item\em Fetch requested total rows. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{user__interface_8c_abd47f284195376a854eac3991b59fa9b}{get\+\_\+student\+\_\+name\+\_\+entry\+\_\+input}} (Gtk\+Widget $\ast$button, gpointer data)
-\begin{DoxyCompactList}\small\item\em Fetches all student ID typed in by the user. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{user__interface_8c_a20cb7d45d633e9f37b357ee86a67d938}{gtk\+\_\+gui\+\_\+main}} (int argc, char $\ast$$\ast$argv)
-\begin{DoxyCompactList}\small\item\em Loads first Window for user interaction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Fetches all student ID typed in by the user. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -317,22 +315,7 @@ Fetches all student ID typed in by the user.
 \mbox{\texttt{ in}}  & {\em data} & containing all typed in values of user \\
 \hline
 \end{DoxyParams}
-Itterate through all Seats and fetch student ID if available\mbox{\Hypertarget{user__interface_8c_a20cb7d45d633e9f37b357ee86a67d938}\label{user__interface_8c_a20cb7d45d633e9f37b357ee86a67d938}} 
-\index{user\_interface.c@{user\_interface.c}!gtk\_gui\_main@{gtk\_gui\_main}}
-\index{gtk\_gui\_main@{gtk\_gui\_main}!user\_interface.c@{user\_interface.c}}
-\doxysubsubsection{\texorpdfstring{gtk\_gui\_main()}{gtk\_gui\_main()}}
-{\footnotesize\ttfamily int gtk\+\_\+gui\+\_\+main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
-
-
-
-Loads first Window for user interaction. 
-
-
-\begin{DoxyEnumerate}
-\item Allocate G\+UI Objects for first window
-\item Assign Process termination if window is closed
-\item Load first window view1 into frame for user interaction
-\end{DoxyEnumerate}\mbox{\Hypertarget{user__interface_8c_a41672910625f8df61341d3be728aebd1}\label{user__interface_8c_a41672910625f8df61341d3be728aebd1}} 
+Itterate through all Seats and fetch student ID if available\mbox{\Hypertarget{user__interface_8c_a41672910625f8df61341d3be728aebd1}\label{user__interface_8c_a41672910625f8df61341d3be728aebd1}} 
 \index{user\_interface.c@{user\_interface.c}!init\_classroom@{init\_classroom}}
 \index{init\_classroom@{init\_classroom}!user\_interface.c@{user\_interface.c}}
 \doxysubsubsection{\texorpdfstring{init\_classroom()}{init\_classroom()}}
