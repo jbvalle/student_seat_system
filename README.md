@@ -6,7 +6,7 @@
 
 <div align="center">
 
-\image html ./doxy/images/logo.png width=20% height=20% 
+<img src="./doxy/images/logo.png" width="20%" height="20">
 
 <i>Requires GCC Version 9.x.y or below! This project generates a seat tracking system, which registers all people occupying a possible seat. Additionally a coverage system is applied for a customized distribution, and a neighbour tracking register is implemented for displaying all direct and indirect neighbours</i>
 <br />
@@ -42,8 +42,8 @@
 ### 25% Coverage has been implemented using following algorithm
 
 
-\image html ./doxy/images/25cov_pattern.png width=40% height=40%
-\image html ./doxy/images/row_col_deter_25cov.png width=40% height=40%
+<img src="./doxy/images/25cov_pattern.png.png" width="40%" height="40">
+<img src="./doxy/images/row_col_deter_25cov.png.png.png" width="40%" height="40">
 
 <hr>
 
