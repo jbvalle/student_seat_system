@@ -15,8 +15,11 @@ build:
 test:
   stage: test
   script:
+
+    #- ./
+    #- ./testRunner --gtest_output="xml:./"
+    - dir && pwd && cd build && dir
     - cd build && ./testRunner
-    #- cd testing && make && make run &&./test --gtest_output="xml:./"
   artifacts:
     when: always
     paths: 
