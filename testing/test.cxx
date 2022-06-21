@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
 extern "C" {
-#include "../inc/project_function.h"
+#include"../inc/project_function.h"
 }
 namespace {
     class PatternGenerator : public ::testing::Test {
@@ -88,12 +88,16 @@ namespace {
     protected:
         GtkWidget **image;
         MyWidget *widget_test{};
-        Classroom *classroom{};
         int NUMBER_OF_STUDENTS;
     };
 
- 
     TEST_F(inputOutput, case_1) {
+        create_view3(widget_test);
+        for (int i = 0; i < NUMBER_OF_STUDENTS; ++i) {
+            ASSERT_NE(widget_test->image[i],nullptr);
+        }
+    }
+    TEST_F(inputOutput, case_2) {
         create_view3(widget_test);
         for (int i = 0; i < NUMBER_OF_STUDENTS; ++i) {
             ASSERT_NE(widget_test->image[i],image[i]);
@@ -135,11 +139,11 @@ namespace {
         //===== 3. Test Values if Correct =============================
         bool first_element_row_state = true, temp_state;
 
-        
+
         for(int i = 0; i < widget_test->row; i++){
 
             first_element_row_state = !first_element_row_state;
-            
+
             temp_state = first_element_row_state;
 
             for(int j = 0; j < widget_test->col; j++){
@@ -150,7 +154,7 @@ namespace {
         }
 
     }
-    
+
     TEST_F(inputOutput, _100_Procent_Pattern) {
 
         //===== 1. SETUP Variables ====================================
@@ -164,7 +168,7 @@ namespace {
         for(int i = 0; i < widget_test->row; i++){
 
             for(int j = 0; j < widget_test->col; j++){
-                
+
                 EXPECT_TRUE(classroom->students[i * widget_test->col + j].hasSeat);
             }
         }

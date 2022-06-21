@@ -43,7 +43,7 @@
 
 
 \image html ./images/25cov_pattern.png width=40% height=40%
-\image html ./images/row_col_deter_25cov.png width=15% height=15%
+\image html ./images/row_col_deter_25cov.png width=40% height=40%
 
 <hr>
 
