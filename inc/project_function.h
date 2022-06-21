@@ -1,3 +1,7 @@
+/**
+ *@file project_function.h
+ *@brief Contains all structs and prototypes of implemented functions
+ */
 #ifndef GRUPPE_V_PROJECT_FUNCTION_H
 #define GRUPPE_V_PROJECT_FUNCTION_H
 
@@ -12,18 +16,27 @@ typedef struct Cell {
     int col;
 } Cell;
 
-
+/**
+ * Containes all students names, occupied seats and coordinates
+ */
 typedef struct Student {
     char name[20];
     bool hasSeat;
     Cell cell;
 } Student;
 
+/**
+ * Containes an array of students and its total number
+ */
 typedef struct Classroom {
     Student *students;
     int number_of_students;
 } Classroom;
 
+/**
+ * Contains user input of student ID -> is used for fetching entry and saving direct and indirect Neighbours
+ *
+ */
 typedef struct StudentEntry {
     GtkWidget *entry;
     const gchar *name;
@@ -32,9 +45,17 @@ typedef struct StudentEntry {
     char directIndirectNeighbour[25][20];
 } StudentEntry;
 
+/**
+ * Contains all windows and its gui objects as well as all its variables 
+ *
+ */
 typedef struct Widget {
-    GtkWidget *view1;
+
+    /**1. Window: User selects coverage, rows & Cols*/
+    GtkWidget *view;
+    /**2. Window: User Input Student ID*/
     GtkWidget *view2;
+    /**3. Window: Generated Pattern is displayed*/
     GtkWidget *view3;
     GtkWidget *frame;
     GtkWidget *col_entry_input;

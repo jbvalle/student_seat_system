@@ -12,49 +12,44 @@ Include dependency graph for user\+\_\+interface.\+c\+:
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{user__interface_8c_a41672910625f8df61341d3be728aebd1}\label{user__interface_8c_a41672910625f8df61341d3be728aebd1}} 
-void {\bfseries init\+\_\+classroom} (Gtk\+Widget $\ast$button, gpointer data)
-\item 
-\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$ \mbox{\hyperlink{user__interface_8c_a94f7706095bd5f8259e3d132e1d62ce2}{generate\+\_\+25p\+\_\+coverage\+\_\+pattern}} (\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$classroom, \mbox{\hyperlink{structWidget}{My\+Widget}} $\ast$my\+Widget)
+void \mbox{\hyperlink{user__interface_8c_a41672910625f8df61341d3be728aebd1}{init\+\_\+classroom}} (Gtk\+Widget $\ast$button, gpointer data)
+\begin{DoxyCompactList}\small\item\em Initializes memory for total students including all its variables. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$ \mbox{\hyperlink{user__interface_8c_a94f7706095bd5f8259e3d132e1d62ce2}{generate\+\_\+25p\+\_\+coverage\+\_\+pattern}} (\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$classroom, \mbox{\hyperlink{project__function_8h_a252a1f9d0ba05cce4c5a62440b69b365}{My\+Widget}} $\ast$my\+Widget)
 \begin{DoxyCompactList}\small\item\em Function sets seating pattern to 25\% coverage. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$ \mbox{\hyperlink{user__interface_8c_a63f31e62cbfe3669dcce8f5bfb15ea34}{generate\+\_\+50p\+\_\+coverage\+\_\+pattern}} (\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$classroom, \mbox{\hyperlink{structWidget}{My\+Widget}} $\ast$my\+Widget)
+\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$ \mbox{\hyperlink{user__interface_8c_a63f31e62cbfe3669dcce8f5bfb15ea34}{generate\+\_\+50p\+\_\+coverage\+\_\+pattern}} (\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$classroom, \mbox{\hyperlink{project__function_8h_a252a1f9d0ba05cce4c5a62440b69b365}{My\+Widget}} $\ast$my\+Widget)
 \begin{DoxyCompactList}\small\item\em Function sets seating pattern to 50\% coverage. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$ \mbox{\hyperlink{user__interface_8c_a282e17e6ffd51d71fc656f20e7aa7c7c}{generate\+\_\+100p\+\_\+coverage\+\_\+pattern}} (\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$classroom, \mbox{\hyperlink{structWidget}{My\+Widget}} $\ast$my\+Widget)
+\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$ \mbox{\hyperlink{user__interface_8c_a282e17e6ffd51d71fc656f20e7aa7c7c}{generate\+\_\+100p\+\_\+coverage\+\_\+pattern}} (\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$classroom, \mbox{\hyperlink{project__function_8h_a252a1f9d0ba05cce4c5a62440b69b365}{My\+Widget}} $\ast$my\+Widget)
 \begin{DoxyCompactList}\small\item\em Function sets seating pattern to 100\% coverage. \end{DoxyCompactList}\item 
-Gtk\+Widget $\ast$ \mbox{\hyperlink{user__interface_8c_a9e3a7a3e449f52f0395a1c7ed52aa7bd}{create\+\_\+view1}} (\mbox{\hyperlink{structWidget}{My\+Widget}} $\ast$view)
+Gtk\+Widget $\ast$ \mbox{\hyperlink{user__interface_8c_a9e3a7a3e449f52f0395a1c7ed52aa7bd}{create\+\_\+view1}} (\mbox{\hyperlink{project__function_8h_a252a1f9d0ba05cce4c5a62440b69b365}{My\+Widget}} $\ast$view)
 \begin{DoxyCompactList}\small\item\em Defines all G\+TK G\+UI Object of 1. window, used for setting coverage and row $\vert$ column adjustment. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{user__interface_8c_a66f00e404f7981480aa450d6bf2a12be}{free\+\_\+classroom}} (\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$class)
 \begin{DoxyCompactList}\small\item\em Free allocated memory for classroom datatype. \end{DoxyCompactList}\item 
-Gtk\+Widget $\ast$ \mbox{\hyperlink{user__interface_8c_ae7b23bcb84436f5d6cdf4c5a9c5af79e}{create\+\_\+view2}} (\mbox{\hyperlink{structWidget}{My\+Widget}} $\ast$view)
+Gtk\+Widget $\ast$ \mbox{\hyperlink{user__interface_8c_ae7b23bcb84436f5d6cdf4c5a9c5af79e}{create\+\_\+view2}} (\mbox{\hyperlink{project__function_8h_a252a1f9d0ba05cce4c5a62440b69b365}{My\+Widget}} $\ast$view)
 \begin{DoxyCompactList}\small\item\em Defines all G\+TK G\+UI Object of 2. window, used for student ID Input and Generating the final pattern. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{user__interface_8c_aa1783868d4dc508a0b4ba1aafd0df36a}{validate\+\_\+user\+\_\+input}} (\mbox{\hyperlink{structStudentEntry}{Student\+Entry}} $\ast$student\+\_\+entry\+\_\+input, \mbox{\hyperlink{structClassroom}{Classroom}} $\ast$current\+\_\+classroom)
 \begin{DoxyCompactList}\small\item\em If \mbox{\hyperlink{structStudent}{Student}} is requested, check all students, if match is found return Coordinates. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{user__interface_8c_af9c63a0809d19bd24d1cdc4a2906e3d0}{get\+\_\+student\+\_\+entry\+\_\+input}} (Gtk\+Widget $\ast$button, gpointer data)
 \begin{DoxyCompactList}\small\item\em Fetching \mbox{\hyperlink{structStudent}{Student}} ID name from entry widget. \end{DoxyCompactList}\item 
-Gtk\+Widget $\ast$ \mbox{\hyperlink{user__interface_8c_a239a91e077c5b95f6f4929e37d93dedb}{create\+\_\+view3}} (\mbox{\hyperlink{structWidget}{My\+Widget}} $\ast$view)
+Gtk\+Widget $\ast$ \mbox{\hyperlink{user__interface_8c_a239a91e077c5b95f6f4929e37d93dedb}{create\+\_\+view3}} (\mbox{\hyperlink{project__function_8h_a252a1f9d0ba05cce4c5a62440b69b365}{My\+Widget}} $\ast$view)
 \begin{DoxyCompactList}\small\item\em Defines all G\+TK G\+UI Object of 3. window, used for displaying generated pattern. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{user__interface_8c_aeca7242b41c33a253c221e0ad854609d}{create\+\_\+view4}} (\mbox{\hyperlink{structWidget}{My\+Widget}} $\ast$view, \mbox{\hyperlink{structStudentEntry}{Student\+Entry}} $\ast$current\+\_\+\+Student\+Entry)
+void \mbox{\hyperlink{user__interface_8c_aeca7242b41c33a253c221e0ad854609d}{create\+\_\+view4}} (\mbox{\hyperlink{project__function_8h_a252a1f9d0ba05cce4c5a62440b69b365}{My\+Widget}} $\ast$view, \mbox{\hyperlink{structStudentEntry}{Student\+Entry}} $\ast$current\+\_\+\+Student\+Entry)
 \begin{DoxyCompactList}\small\item\em Popup window for displaying direct and indirect Neighbours. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{user__interface_8c_a44a406b1e1df8caf4debbd6640417da8}{change\+\_\+view}} (Gtk\+Widget $\ast$button, gpointer data)
 \begin{DoxyCompactList}\small\item\em Changes current window depending on user request, current window container is replaced with requested window. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{user__interface_8c_a2afc665e3803ab3f06391bfebe113748}\label{user__interface_8c_a2afc665e3803ab3f06391bfebe113748}} 
-void {\bfseries radio\+\_\+button\+\_\+selected} (Gtk\+Widget $\ast$button, gpointer data)
-\item 
-\mbox{\Hypertarget{user__interface_8c_acfe122eff7846dbbdd6cf46bbd0e7022}\label{user__interface_8c_acfe122eff7846dbbdd6cf46bbd0e7022}} 
-gint {\bfseries convert\+\_\+str\+\_\+to\+\_\+int} (const gchar $\ast$tmp)
-\item 
+void \mbox{\hyperlink{user__interface_8c_a2afc665e3803ab3f06391bfebe113748}{radio\+\_\+button\+\_\+selected}} (Gtk\+Widget $\ast$button, gpointer data)
+\begin{DoxyCompactList}\small\item\em Changes user\+\_\+choice Variable depeneding on coverage requested by clicking radiobutton. \end{DoxyCompactList}\item 
+gint \mbox{\hyperlink{user__interface_8c_acfe122eff7846dbbdd6cf46bbd0e7022}{convert\+\_\+str\+\_\+to\+\_\+int}} (const gchar $\ast$tmp)
+\begin{DoxyCompactList}\small\item\em Converts gchar type to gint type -\/$>$ used for entries which contains numbers. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{user__interface_8c_aed6032be7269e0015be13dd78f30b62c}\label{user__interface_8c_aed6032be7269e0015be13dd78f30b62c}} 
-void {\bfseries get\+\_\+col\+\_\+entry\+\_\+input} (Gtk\+Widget $\ast$button, gpointer data)
-\item 
+void \mbox{\hyperlink{user__interface_8c_aed6032be7269e0015be13dd78f30b62c}{get\+\_\+col\+\_\+entry\+\_\+input}} (Gtk\+Widget $\ast$button, gpointer data)
+\begin{DoxyCompactList}\small\item\em Fetch requested total columns. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{user__interface_8c_af7ccc9fb970b1f2c80fb826cd5a8fde3}\label{user__interface_8c_af7ccc9fb970b1f2c80fb826cd5a8fde3}} 
-void {\bfseries get\+\_\+row\+\_\+entry\+\_\+input} (Gtk\+Widget $\ast$button, gpointer data)
-\item 
-\mbox{\Hypertarget{user__interface_8c_abd47f284195376a854eac3991b59fa9b}\label{user__interface_8c_abd47f284195376a854eac3991b59fa9b}} 
-void {\bfseries get\+\_\+student\+\_\+name\+\_\+entry\+\_\+input} (Gtk\+Widget $\ast$button, gpointer data)
-\item 
-\mbox{\Hypertarget{user__interface_8c_a20cb7d45d633e9f37b357ee86a67d938}\label{user__interface_8c_a20cb7d45d633e9f37b357ee86a67d938}} 
-int {\bfseries gtk\+\_\+gui\+\_\+main} (int argc, char $\ast$$\ast$argv)
-\end{DoxyCompactItemize}
+void \mbox{\hyperlink{user__interface_8c_af7ccc9fb970b1f2c80fb826cd5a8fde3}{get\+\_\+row\+\_\+entry\+\_\+input}} (Gtk\+Widget $\ast$button, gpointer data)
+\begin{DoxyCompactList}\small\item\em Fetch requested total rows. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{user__interface_8c_abd47f284195376a854eac3991b59fa9b}{get\+\_\+student\+\_\+name\+\_\+entry\+\_\+input}} (Gtk\+Widget $\ast$button, gpointer data)
+\begin{DoxyCompactList}\small\item\em Fetches all student ID typed in by the user. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{user__interface_8c_a20cb7d45d633e9f37b357ee86a67d938}{gtk\+\_\+gui\+\_\+main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Loads first Window for user interaction. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -80,11 +75,28 @@ Changes current window depending on user request, current window container is re
 \mbox{\texttt{ in}}  & {\em data} & Contains the users window request \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{user__interface_8c_acfe122eff7846dbbdd6cf46bbd0e7022}\label{user__interface_8c_acfe122eff7846dbbdd6cf46bbd0e7022}} 
+\index{user\_interface.c@{user\_interface.c}!convert\_str\_to\_int@{convert\_str\_to\_int}}
+\index{convert\_str\_to\_int@{convert\_str\_to\_int}!user\_interface.c@{user\_interface.c}}
+\doxysubsubsection{\texorpdfstring{convert\_str\_to\_int()}{convert\_str\_to\_int()}}
+{\footnotesize\ttfamily gint convert\+\_\+str\+\_\+to\+\_\+int (\begin{DoxyParamCaption}\item[{const gchar $\ast$}]{tmp }\end{DoxyParamCaption})}
+
+
+
+Converts gchar type to gint type -\/$>$ used for entries which contains numbers. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em tmp} & String which is to be converted \\
+\hline
+\mbox{\texttt{ out}}  & {\em result} & converted gint variable \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{user__interface_8c_a9e3a7a3e449f52f0395a1c7ed52aa7bd}\label{user__interface_8c_a9e3a7a3e449f52f0395a1c7ed52aa7bd}} 
 \index{user\_interface.c@{user\_interface.c}!create\_view1@{create\_view1}}
 \index{create\_view1@{create\_view1}!user\_interface.c@{user\_interface.c}}
 \doxysubsubsection{\texorpdfstring{create\_view1()}{create\_view1()}}
-{\footnotesize\ttfamily Gtk\+Widget$\ast$ create\+\_\+view1 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structWidget}{My\+Widget}} $\ast$}]{view }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Gtk\+Widget$\ast$ create\+\_\+view1 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{project__function_8h_a252a1f9d0ba05cce4c5a62440b69b365}{My\+Widget}} $\ast$}]{view }\end{DoxyParamCaption})}
 
 
 
@@ -107,7 +119,7 @@ Defines all G\+TK G\+UI Object of 1. window, used for setting coverage and row $
 \index{user\_interface.c@{user\_interface.c}!create\_view2@{create\_view2}}
 \index{create\_view2@{create\_view2}!user\_interface.c@{user\_interface.c}}
 \doxysubsubsection{\texorpdfstring{create\_view2()}{create\_view2()}}
-{\footnotesize\ttfamily Gtk\+Widget$\ast$ create\+\_\+view2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structWidget}{My\+Widget}} $\ast$}]{view }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Gtk\+Widget$\ast$ create\+\_\+view2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{project__function_8h_a252a1f9d0ba05cce4c5a62440b69b365}{My\+Widget}} $\ast$}]{view }\end{DoxyParamCaption})}
 
 
 
@@ -137,7 +149,7 @@ Defines all G\+TK G\+UI Object of 2. window, used for student ID Input and Gener
 \index{user\_interface.c@{user\_interface.c}!create\_view3@{create\_view3}}
 \index{create\_view3@{create\_view3}!user\_interface.c@{user\_interface.c}}
 \doxysubsubsection{\texorpdfstring{create\_view3()}{create\_view3()}}
-{\footnotesize\ttfamily Gtk\+Widget$\ast$ create\+\_\+view3 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structWidget}{My\+Widget}} $\ast$}]{view }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Gtk\+Widget$\ast$ create\+\_\+view3 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{project__function_8h_a252a1f9d0ba05cce4c5a62440b69b365}{My\+Widget}} $\ast$}]{view }\end{DoxyParamCaption})}
 
 
 
@@ -163,7 +175,7 @@ Defines all G\+TK G\+UI Object of 3. window, used for displaying generated patte
 \index{user\_interface.c@{user\_interface.c}!create\_view4@{create\_view4}}
 \index{create\_view4@{create\_view4}!user\_interface.c@{user\_interface.c}}
 \doxysubsubsection{\texorpdfstring{create\_view4()}{create\_view4()}}
-{\footnotesize\ttfamily void create\+\_\+view4 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structWidget}{My\+Widget}} $\ast$}]{view,  }\item[{\mbox{\hyperlink{structStudentEntry}{Student\+Entry}} $\ast$}]{current\+\_\+\+Student\+Entry }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void create\+\_\+view4 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{project__function_8h_a252a1f9d0ba05cce4c5a62440b69b365}{My\+Widget}} $\ast$}]{view,  }\item[{\mbox{\hyperlink{structStudentEntry}{Student\+Entry}} $\ast$}]{current\+\_\+\+Student\+Entry }\end{DoxyParamCaption})}
 
 
 
@@ -203,7 +215,7 @@ Free allocated memory for classroom datatype.
 \index{user\_interface.c@{user\_interface.c}!generate\_100p\_coverage\_pattern@{generate\_100p\_coverage\_pattern}}
 \index{generate\_100p\_coverage\_pattern@{generate\_100p\_coverage\_pattern}!user\_interface.c@{user\_interface.c}}
 \doxysubsubsection{\texorpdfstring{generate\_100p\_coverage\_pattern()}{generate\_100p\_coverage\_pattern()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structClassroom}{Classroom}}$\ast$ generate\+\_\+100p\+\_\+coverage\+\_\+pattern (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$}]{classroom,  }\item[{\mbox{\hyperlink{structWidget}{My\+Widget}} $\ast$}]{my\+Widget }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{structClassroom}{Classroom}}$\ast$ generate\+\_\+100p\+\_\+coverage\+\_\+pattern (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$}]{classroom,  }\item[{\mbox{\hyperlink{project__function_8h_a252a1f9d0ba05cce4c5a62440b69b365}{My\+Widget}} $\ast$}]{my\+Widget }\end{DoxyParamCaption})}
 
 
 
@@ -226,7 +238,7 @@ Function sets seating pattern to 100\% coverage.
 \index{user\_interface.c@{user\_interface.c}!generate\_25p\_coverage\_pattern@{generate\_25p\_coverage\_pattern}}
 \index{generate\_25p\_coverage\_pattern@{generate\_25p\_coverage\_pattern}!user\_interface.c@{user\_interface.c}}
 \doxysubsubsection{\texorpdfstring{generate\_25p\_coverage\_pattern()}{generate\_25p\_coverage\_pattern()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structClassroom}{Classroom}}$\ast$ generate\+\_\+25p\+\_\+coverage\+\_\+pattern (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$}]{classroom,  }\item[{\mbox{\hyperlink{structWidget}{My\+Widget}} $\ast$}]{my\+Widget }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{structClassroom}{Classroom}}$\ast$ generate\+\_\+25p\+\_\+coverage\+\_\+pattern (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$}]{classroom,  }\item[{\mbox{\hyperlink{project__function_8h_a252a1f9d0ba05cce4c5a62440b69b365}{My\+Widget}} $\ast$}]{my\+Widget }\end{DoxyParamCaption})}
 
 
 
@@ -251,7 +263,7 @@ Function sets seating pattern to 25\% coverage.
 \index{user\_interface.c@{user\_interface.c}!generate\_50p\_coverage\_pattern@{generate\_50p\_coverage\_pattern}}
 \index{generate\_50p\_coverage\_pattern@{generate\_50p\_coverage\_pattern}!user\_interface.c@{user\_interface.c}}
 \doxysubsubsection{\texorpdfstring{generate\_50p\_coverage\_pattern()}{generate\_50p\_coverage\_pattern()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structClassroom}{Classroom}}$\ast$ generate\+\_\+50p\+\_\+coverage\+\_\+pattern (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$}]{classroom,  }\item[{\mbox{\hyperlink{structWidget}{My\+Widget}} $\ast$}]{my\+Widget }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{structClassroom}{Classroom}}$\ast$ generate\+\_\+50p\+\_\+coverage\+\_\+pattern (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClassroom}{Classroom}} $\ast$}]{classroom,  }\item[{\mbox{\hyperlink{project__function_8h_a252a1f9d0ba05cce4c5a62440b69b365}{My\+Widget}} $\ast$}]{my\+Widget }\end{DoxyParamCaption})}
 
 
 
@@ -286,6 +298,76 @@ Fetching \mbox{\hyperlink{structStudent}{Student}} ID name from entry widget.
 \mbox{\texttt{ in}}  & {\em button} & Function call initialized if button pressed \\
 \hline
 \mbox{\texttt{ in}}  & {\em data} & gpointer type variable -\/$>$ \mbox{\hyperlink{structStudentEntry}{Student\+Entry}} Variable used for overwriting datasets with fetched student ID \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{user__interface_8c_abd47f284195376a854eac3991b59fa9b}\label{user__interface_8c_abd47f284195376a854eac3991b59fa9b}} 
+\index{user\_interface.c@{user\_interface.c}!get\_student\_name\_entry\_input@{get\_student\_name\_entry\_input}}
+\index{get\_student\_name\_entry\_input@{get\_student\_name\_entry\_input}!user\_interface.c@{user\_interface.c}}
+\doxysubsubsection{\texorpdfstring{get\_student\_name\_entry\_input()}{get\_student\_name\_entry\_input()}}
+{\footnotesize\ttfamily void get\+\_\+student\+\_\+name\+\_\+entry\+\_\+input (\begin{DoxyParamCaption}\item[{Gtk\+Widget $\ast$}]{button,  }\item[{gpointer}]{data }\end{DoxyParamCaption})}
+
+
+
+Fetches all student ID typed in by the user. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em button} & Function call initialized if button pressed \\
+\hline
+\mbox{\texttt{ in}}  & {\em data} & containing all typed in values of user \\
+\hline
+\end{DoxyParams}
+Itterate through all Seats and fetch student ID if available\mbox{\Hypertarget{user__interface_8c_a20cb7d45d633e9f37b357ee86a67d938}\label{user__interface_8c_a20cb7d45d633e9f37b357ee86a67d938}} 
+\index{user\_interface.c@{user\_interface.c}!gtk\_gui\_main@{gtk\_gui\_main}}
+\index{gtk\_gui\_main@{gtk\_gui\_main}!user\_interface.c@{user\_interface.c}}
+\doxysubsubsection{\texorpdfstring{gtk\_gui\_main()}{gtk\_gui\_main()}}
+{\footnotesize\ttfamily int gtk\+\_\+gui\+\_\+main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Loads first Window for user interaction. 
+
+
+\begin{DoxyEnumerate}
+\item Allocate G\+UI Objects for first window
+\item Assign Process termination if window is closed
+\item Load first window view1 into frame for user interaction
+\end{DoxyEnumerate}\mbox{\Hypertarget{user__interface_8c_a41672910625f8df61341d3be728aebd1}\label{user__interface_8c_a41672910625f8df61341d3be728aebd1}} 
+\index{user\_interface.c@{user\_interface.c}!init\_classroom@{init\_classroom}}
+\index{init\_classroom@{init\_classroom}!user\_interface.c@{user\_interface.c}}
+\doxysubsubsection{\texorpdfstring{init\_classroom()}{init\_classroom()}}
+{\footnotesize\ttfamily void init\+\_\+classroom (\begin{DoxyParamCaption}\item[{Gtk\+Widget $\ast$}]{button,  }\item[{gpointer}]{data }\end{DoxyParamCaption})}
+
+
+
+Initializes memory for total students including all its variables. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em button} & Function call initialized if button pressed \\
+\hline
+\mbox{\texttt{ in}}  & {\em data} & contains the requested values \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyEnumerate}
+\item Allocate memory for requested students depending on rows and columns
+\item Generate Coverage Pattern depending on Users choice
+\end{DoxyEnumerate}\mbox{\Hypertarget{user__interface_8c_a2afc665e3803ab3f06391bfebe113748}\label{user__interface_8c_a2afc665e3803ab3f06391bfebe113748}} 
+\index{user\_interface.c@{user\_interface.c}!radio\_button\_selected@{radio\_button\_selected}}
+\index{radio\_button\_selected@{radio\_button\_selected}!user\_interface.c@{user\_interface.c}}
+\doxysubsubsection{\texorpdfstring{radio\_button\_selected()}{radio\_button\_selected()}}
+{\footnotesize\ttfamily void radio\+\_\+button\+\_\+selected (\begin{DoxyParamCaption}\item[{Gtk\+Widget $\ast$}]{button,  }\item[{gpointer}]{data }\end{DoxyParamCaption})}
+
+
+
+Changes user\+\_\+choice Variable depeneding on coverage requested by clicking radiobutton. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em button} & Function call initlized if button pressed \\
+\hline
+\mbox{\texttt{ in}}  & {\em data} & Is the current radiobutton value \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{user__interface_8c_aa1783868d4dc508a0b4ba1aafd0df36a}\label{user__interface_8c_aa1783868d4dc508a0b4ba1aafd0df36a}} 

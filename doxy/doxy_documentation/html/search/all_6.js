@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['validate_5fuser_5finput_16',['validate_user_input',['../user__interface_8c.html#aa1783868d4dc508a0b4ba1aafd0df36a',1,'user_interface.c']]]
+  ['radio_5fbutton_5fselected_22',['radio_button_selected',['../project__function_8h.html#a2afc665e3803ab3f06391bfebe113748',1,'radio_button_selected(GtkWidget *button, gpointer data):&#160;user_interface.c'],['../user__interface_8c.html#a2afc665e3803ab3f06391bfebe113748',1,'radio_button_selected(GtkWidget *button, gpointer data):&#160;user_interface.c']]]
 ];

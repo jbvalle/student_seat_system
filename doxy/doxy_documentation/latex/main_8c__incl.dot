@@ -7,7 +7,7 @@ digraph "/home/jvalle/Coding/bic02/student_seat_system/src/main.c"
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
   Node2 [label="gtk/gtk.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
-  Node3 [label="../inc/project_function.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$project__function_8h_source.html",tooltip=" "];
+  Node3 [label="../inc/project_function.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$project__function_8h.html",tooltip="Contains all structs and prototypes of implemented functions."];
   Node3 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
   Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
   Node4 [label="stdbool.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];

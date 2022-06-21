@@ -17,9 +17,12 @@ display_pattern(int rows, int cols, GtkWidget *window, GtkWidget **entry, GtkWid
 
 _Noreturn static void remove_child_widget(GtkWidget *widget);
 
-
+/**
+ *@brief loads first window for user interaction
+ */
 int main(int argc, char **argv) {
 
+    ///Load first window view
     gtk_gui_main(argc, argv);
 
     return 0;

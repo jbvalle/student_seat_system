@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['validate_5fuser_5finput_35',['validate_user_input',['../user__interface_8c.html#aa1783868d4dc508a0b4ba1aafd0df36a',1,'user_interface.c']]]
+  ['init_5fclassroom_54',['init_classroom',['../user__interface_8c.html#a41672910625f8df61341d3be728aebd1',1,'user_interface.c']]]
 ];

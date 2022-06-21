@@ -719,6 +719,11 @@ void change_view(GtkWidget *button, gpointer data) {
 }
 
 //TODO: censor the seats when e.g 25 % capacity is selected
+/**
+ *@brief Changes user_choice Variable depeneding on coverage requested by clicking radiobutton 
+ *@param[in] button Function call initlized if button pressed
+ *@param[in] data Is the current radiobutton value
+ */
 void radio_button_selected(GtkWidget *button, gpointer data) {
     if (strcmp((char *) data, "1") == 0) { // 100 %
         if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON (button))) {
@@ -739,6 +744,11 @@ void radio_button_selected(GtkWidget *button, gpointer data) {
     }
 }
 
+/**
+ *@brief Converts gchar type to gint type -> used for entries which contains numbers
+ *@param[in] tmp String which is to be converted
+ *@param[out] result converted gint variable
+ */
 gint convert_str_to_int(const gchar *tmp) {
     gchar *end_ptr; // for strTol.
     gdouble result;
@@ -752,13 +762,18 @@ gint convert_str_to_int(const gchar *tmp) {
     return (gint) result;
 }
 
+/**
+ *@brief Fetch requested total columns
+ */
 void get_col_entry_input(GtkWidget *button, gpointer data) {
     if (data == NULL)
         return;
     MyWidget *myWidget = data;
     myWidget->col = convert_str_to_int(gtk_entry_get_text(GTK_ENTRY(myWidget->col_entry_input)));
 }
-
+/**
+ *@brief Fetch requested total rows
+ */
 void get_row_entry_input(GtkWidget *button, gpointer data) {
     if (data == NULL)
         return;
@@ -766,7 +781,13 @@ void get_row_entry_input(GtkWidget *button, gpointer data) {
     myWidget->row = convert_str_to_int(gtk_entry_get_text(GTK_ENTRY(myWidget->row_entry_input)));
 }
 
+/**
+ *@brief Initializes memory for total students including all its variables
+ *@param[in] button Function call initialized if button pressed
+ *@param[in] data contains the requested values 
+ */
 void init_classroom(GtkWidget *button, gpointer data) {
+    ///1. Allocate memory for requested students depending on rows and columns
     MyWidget *myWidget = data;
     if (myWidget->row <= 0 || myWidget->row >= 200 || myWidget->col >= 200 || myWidget->col <= 0) {
         myWidget->row = ROWS_DEFAULT; // default when user does not type anything or enters 0 or more then 200
@@ -782,16 +803,18 @@ void init_classroom(GtkWidget *button, gpointer data) {
     }
 //    g_print("%d actual value\n",z * myWidget->col + s);
 
- //Generate Coverage Pattern depending on Users choice
+   ///2. Generate Coverage Pattern depending on Users choice
     if(myWidget->user_choice == 25)(void)generate_25p_coverage_pattern(classroom, myWidget);
 
     if(myWidget->user_choice == 50)(void)generate_50p_coverage_pattern(classroom, myWidget);
 
     if(myWidget->user_choice == 100)(void)generate_100p_coverage_pattern(classroom, myWidget);
-
-
 }
-
+/**
+ *@brief Fetches all student ID typed in by the user
+ *@param[in] button Function call initialized if button pressed
+ *@param[in] data containing all typed in values of user
+ */
 void get_student_name_entry_input(GtkWidget *button, gpointer data) {
     if (data == NULL)
         return;
@@ -800,6 +823,7 @@ void get_student_name_entry_input(GtkWidget *button, gpointer data) {
     const int NUMBER_OF_STUDENTS = myWidget->row * myWidget->col;
     int student_count = 0;
 
+    ///Itterate through all Seats and fetch student ID if available
     for (int i = 0; i < myWidget->row; i++)
         for (int j = 0; j < myWidget->col; j++) {
             if (classroom->students[student_count].hasSeat  == true){
@@ -821,9 +845,13 @@ void get_student_name_entry_input(GtkWidget *button, gpointer data) {
 
         }
 }
+/**
+ *@brief Loads first Window for user interaction
+ */
 
 int gtk_gui_main(int argc, char **argv){
 
+    ///1. Allocate GUI Objects for first window
     widget = malloc(sizeof(*widget));
     gtk_init(&argc, &argv);
 
@@ -849,8 +877,10 @@ int gtk_gui_main(int argc, char **argv){
 
     g_object_ref (widget->view1);
 
+    ///2. Assign Process termination if window is closed
     g_signal_connect (window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
+    ///3. Load first window view1 into frame for user interaction
     gtk_box_pack_start(GTK_BOX (widget->frame), widget->view1, 10, 10, 10);
     gtk_box_pack_start(GTK_BOX (vbox), widget->frame, 10, 10, 10);
 
