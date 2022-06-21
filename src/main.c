@@ -1,5 +1,5 @@
 #include <gtk/gtk.h>
-#include "../project_function.h"
+#include "../inc/project_function.h"
 
 /*
 //TODO: 1) when "save" button is selected classroom will be created and the entry are not more editable, only appear as label
@@ -14,44 +14,8 @@ _Noreturn static void remove_child_widget(GtkWidget *widget);
 
 
 int main(int argc, char **argv) {
-    widget = malloc(sizeof(*widget));
-    gtk_init(&argc, &argv);
 
-    GtkCssProvider *provider;
-    GdkDisplay *display;
-    GdkScreen *screen;
-    provider = gtk_css_provider_new ();
-    display = gdk_display_get_default ();
-    screen = gdk_display_get_default_screen (display);
-    gtk_style_context_add_provider_for_screen (screen, GTK_STYLE_PROVIDER (provider),  GTK_STYLE_PROVIDER_PRIORITY_USER);
-
-    const gchar *myCssFile = "../cmake-build-debug-coverage/theme.css";
-    GError *error = 0;
-    gtk_css_provider_load_from_file(provider, g_file_new_for_path(myCssFile), &error);
-    g_object_unref (provider);
-
-    GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    GtkWidget *vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
-    /*view wird erneut übergeben zum testen.*/
-    widget->view1 = create_view1(widget);
-
-    widget->frame = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
-
-    g_object_ref (widget->view1);
-
-    g_signal_connect (window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
-
-    gtk_box_pack_start(GTK_BOX (widget->frame), widget->view1, 10, 10, 10);
-    gtk_box_pack_start(GTK_BOX (vbox), widget->frame, 10, 10, 10);
-
-    gtk_widget_set_size_request(window, 400, 400);
-    gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-    gtk_window_set_default_size(GTK_WINDOW(window), 800, 800);
-
-    gtk_container_add(GTK_CONTAINER (window), vbox);
-    gtk_widget_show_all(window);
-
-    gtk_main();
+    gtk_gui_main(argc, argv);
 
     return 0;
 }

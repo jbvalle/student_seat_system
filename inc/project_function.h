@@ -77,4 +77,8 @@ void get_direct_neighbour();
 Classroom* generate_25p_coverage_pattern(Classroom *classroom, MyWidget *myWidget);
 Classroom* generate_50p_coverage_pattern(Classroom *classroom, MyWidget *myWidget);
 Classroom* generate_100p_coverage_pattern(Classroom *classroom, MyWidget *myWidget);
+
+
+int gtk_gui_main(int argc, char **argv);
+
 #endif //GRUPPE_V_PROJECT_FUNCTION_H

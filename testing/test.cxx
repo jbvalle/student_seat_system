@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
 extern "C" {
-#include"../project_function.h"
+#include "../inc/project_function.h"
 }
 namespace {
     class PatternGenerator : public ::testing::Test {

@@ -11,7 +11,7 @@ if(NOT googletest_POPULATED)
 endif()
 
 
-add_executable(testRunner testing/test.cxx  ../src/user_interface.c ../project_function.h)
+add_executable(testRunner testing/test.cxx  ../src/user_interface.c ../inc/project_function.h)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
@@ -25,3 +25,5 @@ add_definitions(${GTK3_CFLAGS_OTHER})
 
 target_link_libraries(testRunner ${GTK3_LIBRARIES} gtest_main gmock_main)
 
+
+target_include_directories(gruppe_v PRIVATE ../inc)
