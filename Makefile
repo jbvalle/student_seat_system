@@ -14,7 +14,7 @@ COVPATH=./build/CMakeFiles/testRunner.dir/src/
 
 TARGET:= testRunner
 
-all: build
+all: clean build
 
 build: FORCE
 	mkdir -p $@ && $(CMAKE) -B./$(BUILD) && cd $(BUILD) && $(MAKE)

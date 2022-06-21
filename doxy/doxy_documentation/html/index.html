@@ -68,9 +68,9 @@ $(function() {
 <div class="textblock"><div id="top"></div><p><br  />
 </p>
 <div align="center"></div><div align="center"><div class="image">
-<img src="logo.png" alt="" width="50%" height="50%"/>
+<img src="logo.png" alt="" width="20%" height="20%"/>
 </div>
-</div><div align="center"><em>This project generates a seat tracking system, which registers all people occupying a possible seat. Additionally a coverage system is applied for a customized distribution, and a neighbour tracking register is implemented for displaying all direct and indirect neighbours</em> <br  />
+</div><div align="center"><em>Requires GCC Version 9.x.y or below! This project generates a seat tracking system, which registers all people occupying a possible seat. Additionally a coverage system is applied for a customized distribution, and a neighbour tracking register is implemented for displaying all direct and indirect neighbours</em> <br  />
  <br  />
 </div><div align="center"></div><hr  />
 <h2><a class="anchor" id="autotoc_md0"></a>
@@ -112,7 +112,7 @@ Pattern generation</h2>
 <h3><a class="anchor" id="autotoc_md2"></a>
 25% Coverage has been implemented using following algorithm</h3>
 <div class="image">
-<img src="25cov_pattern.png" alt="" width="15%" height="15%"/>
+<img src="25cov_pattern.png" alt="" width="40%" height="40%"/>
 </div>
  <div class="image">
 <img src="row_col_deter_25cov.png" alt="" width="15%" height="15%"/>
@@ -120,23 +120,30 @@ Pattern generation</h2>
 <hr  />
 <h2><a class="anchor" id="autotoc_md3"></a>
 Getting Started</h2>
-<ul>
-<li>Start by generating Binary file: Follow Installation instruction</li>
-</ul>
 <h3><a class="anchor" id="autotoc_md4"></a>
 Installation</h3>
 <ul>
-<li>Generate Binary File "./hashcount" by executing make in src/ <div class="fragment"><div class="line">make</div>
+<li>1. Build Program from root directory <div class="fragment"><div class="line">make build</div>
 </div><!-- fragment --></li>
 </ul>
 <hr  />
 <h2><a class="anchor" id="autotoc_md5"></a>
 Usage</h2>
 <ul>
-<li>Hashcount is able to generate Hashtable from any file index requested</li>
-<li>If no input text is explicitly mentioned in argument a default text file in TEXTFILES/default.txt is used</li>
-<li>The User is able to choose different options</li>
-<li>Example: <div class="fragment"><div class="line">./hashcount -f input.txt -rc</div>
+<li>Run Main Program (from root directory) <div class="fragment"><div class="line">make run</div>
+</div><!-- fragment --></li>
+<li>Test Program using Gtest (from root directory) <div class="fragment"><div class="line">make test</div>
+</div><!-- fragment --></li>
+<li>Generate Coverage Data (from root directory | REQUIRES <code>MAKE TEST</code> COMMAND) <div class="fragment"><div class="line">make gcov </div>
+</div><!-- fragment --></li>
+<li>Access Coverage Data through html (from root directory) <div class="fragment"><div class="line">make report</div>
+</div><!-- fragment --></li>
+</ul>
+<hr  />
+<h2><a class="anchor" id="autotoc_md6"></a>
+Documentation</h2>
+<ul>
+<li>Access Doxygen Documentation (from root directory) <div class="fragment"><div class="line">make doxy</div>
 </div><!-- fragment --></li>
 </ul>
 <hr  />

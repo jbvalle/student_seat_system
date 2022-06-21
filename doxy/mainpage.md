@@ -6,7 +6,7 @@
 
 <div align="center">
 
-\image html ./images/logo.png width=50% height=50% 
+\image html ./images/logo.png width=20% height=20% 
 
 <i>Requires GCC Version 9.x.y or below! This project generates a seat tracking system, which registers all people occupying a possible seat. Additionally a coverage system is applied for a customized distribution, and a neighbour tracking register is implemented for displaying all direct and indirect neighbours</i>
 <br />
@@ -42,7 +42,7 @@
 ### 25% Coverage has been implemented using following algorithm
 
 
-\image html ./images/25cov_pattern.png width=15% height=15%
+\image html ./images/25cov_pattern.png width=40% height=40%
 \image html ./images/row_col_deter_25cov.png width=15% height=15%
 
 <hr>
