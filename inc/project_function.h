@@ -52,7 +52,7 @@ typedef struct StudentEntry {
 typedef struct Widget {
 
     /**1. Window: User selects coverage, rows & Cols*/
-    GtkWidget *view;
+    GtkWidget *view1;
     /**2. Window: User Input Student ID*/
     GtkWidget *view2;
     /**3. Window: Generated Pattern is displayed*/

@@ -68,83 +68,69 @@ $(function() {
 <div class="textblock"><div id="top"></div><p><br  />
 </p>
 <div align="center"></div><div align="center"><div class="image">
-<img src="./images/logo.png" alt="" width="50%" height="50%"/>
+<img src="logo.png" alt="" width="50%" height="50%"/>
 </div>
-</div><div align="center"><em>This project reads and saves a textfile in a generated hashtable and censores words depending on requested user input.</em> <br  />
+</div><div align="center"><em>This project generates a seat tracking system, which registers all people occupying a possible seat. Additionally a coverage system is applied for a customized distribution, and a neighbour tracking register is implemented for displaying all direct and indirect neighbours</em> <br  />
  <br  />
 </div><div align="center"></div><hr  />
 <h2><a class="anchor" id="autotoc_md0"></a>
 About The Project</h2>
 <p><b>1 Part: (SOLVED)<br  />
 </b></p><ul>
-<li>Open a text file and read the text row by row.<br  />
+<li>Implement a user interface<br  />
 </li>
-<li>Separate words by these characters (" ", ".", "\n")<br  />
-</li>
-<li>Store the values in a hashtable using dynamic linked lists.<br  />
-</li>
-<li>Use the sum of character values as value to be hashed. E.g. Cat = (67+97+116) % 23<br  />
-</li>
-<li>Words shall be stored in dynamically allocated memory<br  />
-</li>
-<li>Print out the hash in a readable way. E.g. max 10 words per row.<br  />
+<li>For this purpose the GTK3 Framework has implemented<br  />
 </li>
 </ul>
 <p><b>2 Part: (SOLVED)<br  />
 </b></p><ul>
-<li>The occurrence of words shall be counted instead of multiple entries in the list. <br  />
-</li>
-<li>Add additional word separators:<br  />
-</li>
-<li>semicolon (;) <br  />
-</li>
-<li>colon (:)<br  />
-</li>
-<li>comma (,)<br  />
-</li>
-<li>question mark (?)<br  />
-</li>
-<li>tab (\t)<br  />
+<li>Generate a seating pattern using costumized rows and columns <br  />
 </li>
 </ul>
 <p><b>3 Part: (SOLVED)<br  />
 </b></p><ul>
-<li>The lists shall always retain alphabetic order.</li>
+<li>Assigning a seat after user input <br  />
+</li>
 </ul>
 <p><b>4 Part: (SOLVED)<br  />
 </b></p><ul>
-<li>Give the user a choice to select one bucket to output separately.</li>
-<li>Print out the entries in the Bucket.</li>
-<li>Let the user select one or more buckets and remove all words from the text which do not match to these selected buckets and write it to a new text file.</li>
+<li>Saving the entered <a class="el" href="structStudent.html">Student</a> ID and its seating position <br  />
+</li>
 </ul>
 <p><b>5 Part: (SOLVED)<br  />
 </b></p><ul>
-<li>Let the user select one or more buckets and censor all words from the text which match to these selected buckets and write it to a new text file.</li>
-<li>All word separators shall be copied to the new file in the correct places.</li>
+<li>Requesting and display all direct neighbours relative to a user defined student ID<br  />
+</li>
 </ul>
 <p><b>6 Part: (SOLVED)<br  />
 </b></p><ul>
-<li>Store the hash in a binary file</li>
-<li>Read and populate the hash from a file and append/count new words into it when the user wants to do this.</li>
+<li>Requesting and display all indirect neighbours relative to a user defined student ID<br  />
+</li>
 </ul>
-<p><b>7 Part: (SOLVED)<br  />
-</b></p><ul>
-<li>The program arguments are handled by getopt(3).</li>
-</ul>
+<h3><a class="anchor" id="autotoc_md1"></a>
+Pattern generation</h3>
+<h4><a class="anchor" id="autotoc_md2"></a>
+25% Coverage has been implemented using following algorithm</h4>
+<div class="image">
+<img src="25cov_pattern.png" alt="" width="50%" height="50%"/>
+</div>
+ <div class="image">
+<img src="row_col_deter_25cov.png" alt="" width="50%" height="50%"/>
+</div>
 <hr  />
-<h2><a class="anchor" id="autotoc_md1"></a>
+<h2><a class="anchor" id="autotoc_md3"></a>
 Getting Started</h2>
 <ul>
 <li>Start by generating Binary file: Follow Installation instruction</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md2"></a>
+<h3><a class="anchor" id="autotoc_md4"></a>
 Installation</h3>
 <ul>
 <li>Generate Binary File "./hashcount" by executing make in src/ <div class="fragment"><div class="line">make</div>
 </div><!-- fragment --></li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md3"></a>
+<h2><a class="anchor" id="autotoc_md5"></a>
 Usage</h2>
 <ul>
 <li>Hashcount is able to generate Hashtable from any file index requested</li>
@@ -164,7 +150,7 @@ Usage</h2>
 <th>-c </th><th>This censores all words except chosen buckets. This requires no arguments  </th></tr>
 </table>
 <hr  />
-<h2><a class="anchor" id="autotoc_md4"></a>
+<h2><a class="anchor" id="autotoc_md6"></a>
 Example</h2>
 <ul>
 <li>These examples serve as illustrations how this application could be run</li>
@@ -180,17 +166,17 @@ Example</h2>
 <hr  />
 <p> <br  />
 </p>
-<h2><a class="anchor" id="autotoc_md5"></a>
+<h2><a class="anchor" id="autotoc_md7"></a>
 Contact</h2>
 <p>Author: John Bryan Valle Email: <a href="#" onclick="location.href='mai'+'lto:'+'jbv'+'al'+'le.'+'jv'+'@gm'+'ai'+'l.c'+'om'; return false;">jbval<span style="display: none;">.nosp@m.</span>le.j<span style="display: none;">.nosp@m.</span>v@gma<span style="display: none;">.nosp@m.</span>il.c<span style="display: none;">.nosp@m.</span>om</a> Date: 21.01.2022 </p><div id="top"></div><p><br  />
 </p>
 <div align="center"></div><div align="center"><div class="image">
-<img src="./images/logo.png" alt="" width="50%" height="50%"/>
+<img src="logo.png" alt="" width="20%" height="20%"/>
 </div>
 </div><div align="center"><em>This project reads and saves a textfile in a generated hashtable and censores words depending on requested user input.</em> <br  />
  <br  />
 </div><div align="center"></div><hr  />
-<h2><a class="anchor" id="autotoc_md6"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 About The Project</h2>
 <p><b>1 Part: (SOLVED)<br  />
 </b></p><ul>
@@ -249,12 +235,12 @@ About The Project</h2>
 <li>The program arguments are handled by getopt(3).</li>
 </ul>
 <hr  />
-<h2><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md9"></a>
 Getting Started</h2>
 <ul>
 <li>Start by generating Binary file: Follow Installation instruction</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md8"></a>
+<h3><a class="anchor" id="autotoc_md10"></a>
 Installation</h3>
 <ul>
 <li>Generate Binary File "./hashcount" by executing make in src/ <div class="fragment"><div class="line">make</div>
@@ -263,7 +249,7 @@ Installation</h3>
 <pre class="fragment">     &lt;hr&gt;
 
      &lt;!-- USAGE EXAMPLES --&gt;
-</pre> <h2><a class="anchor" id="autotoc_md9"></a>
+</pre> <h2><a class="anchor" id="autotoc_md11"></a>
 Usage</h2>
 <pre class="fragment">     * Hashcount is able to generate Hashtable from any file index requested
      * If no input text is explicitly mentioned in argument a default text file in TEXTFILES/default.txt is used
@@ -295,7 +281,7 @@ Usage</h2>
                                                                                                               &lt;hr&gt;
 
                                                                                                               &lt;!-- USAGE EXAMPLES --&gt;
-</pre> <h2><a class="anchor" id="autotoc_md10"></a>
+</pre> <h2><a class="anchor" id="autotoc_md12"></a>
 Example</h2>
 <pre class="fragment">                                                                                                              * These examples serve as illustrations how this application could be run
                                                                                                               * For inputting indices for removing and censoring words spaces or comma could be used
@@ -310,7 +296,7 @@ Example</h2>
                                                                                                                        &lt;hr&gt;
                                                                                                                        &lt;br /&gt;
                                                                                                                        &lt;!-- CONTACT --&gt;
-</pre> <h2><a class="anchor" id="autotoc_md11"></a>
+</pre> <h2><a class="anchor" id="autotoc_md13"></a>
 Contact</h2>
 <pre class="fragment">                                                                                                                       Author: John Bryan Valle
                                                                                                                        Email: jbvalle.jv@gmail.com
