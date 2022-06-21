@@ -8,7 +8,7 @@
 
 \image html ./images/logo.png width=50% height=50% 
 
-<i>This project generates a seat tracking system, which registers all people occupying a possible seat. Additionally a coverage system is applied for a customized distribution, and a neighbour tracking register is implemented for displaying all direct and indirect neighbours</i>
+<i>Requires GCC Version 9.x.y or below! This project generates a seat tracking system, which registers all people occupying a possible seat. Additionally a coverage system is applied for a customized distribution, and a neighbour tracking register is implemented for displaying all direct and indirect neighbours</i>
 <br />
 <br />
 
@@ -51,27 +51,39 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-* Start by generating Binary file: Follow Installation instruction
-
 ### Installation
 
-* Generate Binary File "./hashcount" by executing make in src/
+* 1. Build Program from root directory
    ```sh
-   make
+   make build
    ```
-
 <hr>
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-* Hashcount is able to generate Hashtable from any file index requested
-* If no input text is explicitly mentioned in argument a default text file in TEXTFILES/default.txt is used
-* The User is able to choose different options
-* Example:
+* Run Main Program (from root directory)
    ```sh
-   ./hashcount -f input.txt -rc
+   make run
    ```
-
+* Test Program using Gtest (from root directory)
+   ```sh
+   make test
+   ```
+* Generate Coverage Data (from root directory | REQUIRES `MAKE TEST` COMMAND)
+   ```sh
+   make gcov 
+   ```
+* Access Coverage Data through html (from root directory)
+   ```sh
+   make report
+   ```
 <hr>
 
+## Documentation
+
+* Access Doxygen Documentation (from root directory)
+   ```sh
+   make doxy
+   ```
+<hr>

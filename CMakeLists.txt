@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.16.3)
 project(gruppe_v LANGUAGES C CXX)
 
+set(CMAKE_CXX_FLAGS --coverage)
+
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} -std=c99")
 

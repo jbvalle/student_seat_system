@@ -107,15 +107,15 @@ About The Project</h2>
 <li>Requesting and display all indirect neighbours relative to a user defined student ID<br  />
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md1"></a>
-Pattern generation</h3>
-<h4><a class="anchor" id="autotoc_md2"></a>
-25% Coverage has been implemented using following algorithm</h4>
+<h2><a class="anchor" id="autotoc_md1"></a>
+Pattern generation</h2>
+<h3><a class="anchor" id="autotoc_md2"></a>
+25% Coverage has been implemented using following algorithm</h3>
 <div class="image">
-<img src="25cov_pattern.png" alt="" width="50%" height="50%"/>
+<img src="25cov_pattern.png" alt="" width="15%" height="15%"/>
 </div>
  <div class="image">
-<img src="row_col_deter_25cov.png" alt="" width="50%" height="50%"/>
+<img src="row_col_deter_25cov.png" alt="" width="15%" height="15%"/>
 </div>
 <hr  />
 <h2><a class="anchor" id="autotoc_md3"></a>
@@ -139,169 +139,8 @@ Usage</h2>
 <li>Example: <div class="fragment"><div class="line">./hashcount -f input.txt -rc</div>
 </div><!-- fragment --></li>
 </ul>
-<table style="width=110%" border="solid black">
-<tr align="left">
-<th>OPTIONS </th><th>DESCRIPTION  </th></tr>
-<tr align="left">
-<th>-f path_rel_to_bin/filename.txt </th><th>For specifying an input file declare a file name after the -f option i.e. -f input.txt  </th></tr>
-<tr align="left">
-<th>-r </th><th>This removes all keywords from a textfile by a chosen bucket. This requires no arguments.  </th></tr>
-<tr align="left">
-<th>-c </th><th>This censores all words except chosen buckets. This requires no arguments  </th></tr>
-</table>
 <hr  />
-<h2><a class="anchor" id="autotoc_md6"></a>
-Example</h2>
-<ul>
-<li>These examples serve as illustrations how this application could be run</li>
-<li>For inputting indices for removing and censoring words spaces or comma could be used <div class="fragment"><div class="line">./hashcount -f input.txt -rc</div>
-</div><!-- fragment --></li>
-</ul>
-<div class="image">
-<img src="./images/remove.png" alt="" width="50%" height="50%"/>
-</div>
- <div class="image">
-<img src="./images/censor.png" alt="" width="50%" height="50%"/>
-</div>
-<hr  />
-<p> <br  />
-</p>
-<h2><a class="anchor" id="autotoc_md7"></a>
-Contact</h2>
-<p>Author: John Bryan Valle Email: <a href="#" onclick="location.href='mai'+'lto:'+'jbv'+'al'+'le.'+'jv'+'@gm'+'ai'+'l.c'+'om'; return false;">jbval<span style="display: none;">.nosp@m.</span>le.j<span style="display: none;">.nosp@m.</span>v@gma<span style="display: none;">.nosp@m.</span>il.c<span style="display: none;">.nosp@m.</span>om</a> Date: 21.01.2022 </p><div id="top"></div><p><br  />
-</p>
-<div align="center"></div><div align="center"><div class="image">
-<img src="logo.png" alt="" width="20%" height="20%"/>
-</div>
-</div><div align="center"><em>This project reads and saves a textfile in a generated hashtable and censores words depending on requested user input.</em> <br  />
- <br  />
-</div><div align="center"></div><hr  />
-<h2><a class="anchor" id="autotoc_md8"></a>
-About The Project</h2>
-<p><b>1 Part: (SOLVED)<br  />
-</b></p><ul>
-<li>Open a text file and read the text row by row.<br  />
-</li>
-<li>Separate words by these characters (" ", ".", "\n")<br  />
-</li>
-<li>Store the values in a hashtable using dynamic linked lists.<br  />
-</li>
-<li>Use the sum of character values as value to be hashed. E.g. Cat = (67+97+116) % 23<br  />
-</li>
-<li>Words shall be stored in dynamically allocated memory<br  />
-</li>
-<li>Print out the hash in a readable way. E.g. max 10 words per row.<br  />
-</li>
-</ul>
-<p><b>2 Part: (SOLVED)<br  />
-</b></p><ul>
-<li>The occurrence of words shall be counted instead of multiple entries in the list. <br  />
-</li>
-<li>Add additional word separators:<br  />
-</li>
-<li>semicolon (;) <br  />
-</li>
-<li>colon (:)<br  />
-</li>
-<li>comma (,)<br  />
-</li>
-<li>question mark (?)<br  />
-</li>
-<li>tab (\t)<br  />
-</li>
-</ul>
-<p><b>3 Part: (SOLVED)<br  />
-</b></p><ul>
-<li>The lists shall always retain alphabetic order.</li>
-</ul>
-<p><b>4 Part: (SOLVED)<br  />
-</b></p><ul>
-<li>Give the user a choice to select one bucket to output separately.</li>
-<li>Print out the entries in the Bucket.</li>
-<li>Let the user select one or more buckets and remove all words from the text which do not match to these selected buckets and write it to a new text file.</li>
-</ul>
-<p><b>5 Part: (SOLVED)<br  />
-</b></p><ul>
-<li>Let the user select one or more buckets and censor all words from the text which match to these selected buckets and write it to a new text file.</li>
-<li>All word separators shall be copied to the new file in the correct places.</li>
-</ul>
-<p><b>6 Part: (SOLVED)<br  />
-</b></p><ul>
-<li>Store the hash in a binary file</li>
-<li>Read and populate the hash from a file and append/count new words into it when the user wants to do this.</li>
-</ul>
-<p><b>7 Part: (SOLVED)<br  />
-</b></p><ul>
-<li>The program arguments are handled by getopt(3).</li>
-</ul>
-<hr  />
-<h2><a class="anchor" id="autotoc_md9"></a>
-Getting Started</h2>
-<ul>
-<li>Start by generating Binary file: Follow Installation instruction</li>
-</ul>
-<h3><a class="anchor" id="autotoc_md10"></a>
-Installation</h3>
-<ul>
-<li>Generate Binary File "./hashcount" by executing make in src/ <div class="fragment"><div class="line">make</div>
-</div><!-- fragment --></li>
-</ul>
-<pre class="fragment">     &lt;hr&gt;
-
-     &lt;!-- USAGE EXAMPLES --&gt;
-</pre> <h2><a class="anchor" id="autotoc_md11"></a>
-Usage</h2>
-<pre class="fragment">     * Hashcount is able to generate Hashtable from any file index requested
-     * If no input text is explicitly mentioned in argument a default text file in TEXTFILES/default.txt is used
-     * The User is able to choose different options
-     * Example:
-        ```sh
-           ./hashcount -f input.txt -rc
-              ```
-
-              &lt;table style="width=110%" border="solid black"&gt;
-                  &lt;tr ALIGN=LEFT&gt;
-                          &lt;th &gt;OPTIONS&lt;/th&gt;
-                                  &lt;th&gt;DESCRIPTION&lt;/th&gt;
-                                      &lt;/tr&gt;
-                                          &lt;tr ALIGN=LEFT&gt;
-                                                  &lt;th&gt;-f path_rel_to_bin/filename.txt&lt;/th&gt;
-                                                          &lt;th&gt;For specifying an input file declare a file name after the -f option i.e. -f input.txt&lt;/th&gt;
-                                                              &lt;/tr&gt;
-                                                                  &lt;tr ALIGN=LEFT&gt;
-                                                                          &lt;th&gt;-r&lt;/th&gt;
-                                                                                  &lt;th&gt;This removes all keywords from a textfile by a chosen bucket. This requires no arguments.&lt;/th&gt;
-                                                                                      &lt;/tr&gt;
-                                                                                          &lt;tr ALIGN=LEFT&gt;
-                                                                                                  &lt;th&gt;-c&lt;/th&gt;
-                                                                                                          &lt;th&gt;This censores all words except chosen buckets. This requires no arguments&lt;/th&gt;
-                                                                                                              &lt;/tr&gt;
-                                                                                                              &lt;/table&gt;
-
-                                                                                                              &lt;hr&gt;
-
-                                                                                                              &lt;!-- USAGE EXAMPLES --&gt;
-</pre> <h2><a class="anchor" id="autotoc_md12"></a>
-Example</h2>
-<pre class="fragment">                                                                                                              * These examples serve as illustrations how this application could be run
-                                                                                                              * For inputting indices for removing and censoring words spaces or comma could be used
-                                                                                                                 ```sh
-                                                                                                                    ./hashcount -f input.txt -rc
-                                                                                                                       ```
-
-                                                                                                                       \image html ./images/remove.png width=50% height=50% 
-                                                                                                                       \image html ./images/censor.png width=50% height=50%
-
-
-                                                                                                                       &lt;hr&gt;
-                                                                                                                       &lt;br /&gt;
-                                                                                                                       &lt;!-- CONTACT --&gt;
-</pre> <h2><a class="anchor" id="autotoc_md13"></a>
-Contact</h2>
-<pre class="fragment">                                                                                                                       Author: John Bryan Valle
-                                                                                                                       Email: jbvalle.jv@gmail.com
-                                                                                                                       Date: 21.01.2022
-</pre> </div></div><!-- PageDoc -->
+ </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

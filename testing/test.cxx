@@ -92,13 +92,8 @@ namespace {
         int NUMBER_OF_STUDENTS;
     };
 
+ 
     TEST_F(inputOutput, case_1) {
-        create_view3(widget_test);
-        for (int i = 0; i < NUMBER_OF_STUDENTS; ++i) {
-            ASSERT_NE(widget_test->image[i],nullptr);
-        }
-    }
-    TEST_F(inputOutput, case_2) {
         create_view3(widget_test);
         for (int i = 0; i < NUMBER_OF_STUDENTS; ++i) {
             ASSERT_NE(widget_test->image[i],image[i]);
