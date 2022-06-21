@@ -5,7 +5,7 @@ stages:
 build:
   stage: build
   script:
-    - bash build_gtest.sh && make build 
+    - bash main_system_build.sh && make build 
   artifacts:
     paths:
       - ./*
