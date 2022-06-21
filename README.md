@@ -42,8 +42,8 @@
 ### 25% Coverage has been implemented using following algorithm
 
 
-<img src="./doxy/images/25cov_pattern.png.png" width="40%" height="40">
-<img src="./doxy/images/row_col_deter_25cov.png.png.png" width="40%" height="40">
+<img src="./doxy/images/25cov_pattern.png" width="40%" height="40">
+<img src="./doxy/images/row_col_deter_25cov.png" width="40%" height="40">
 
 <hr>
 
